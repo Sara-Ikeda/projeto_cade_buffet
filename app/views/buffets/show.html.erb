@@ -1,0 +1,20 @@
+<div>
+  <h2><%= @buffet.trade_name %> - <%= @buffet.registration_number %></h2>
+  <h3><%= @buffet.description %></h3>
+  <ul>
+    <li>
+      <strong>Contato: </strong><%= @buffet.contact %>
+    </li>
+    <li>
+      <strong>Endereço: </strong><%= @buffet.address.path %>.
+    </li>
+    <li>
+      <strong>Cidade/UF: </strong><%= @buffet.address.city %>/<%= @buffet.address.state %>. CEP: <%= @buffet.address.zip %>
+    </li>
+    <li>
+      <strong>Tipos de Pagamento: </strong><%= @buffet.payment_types %>
+    </li>
+  </ul>
+  <%= button_to 'Editar', edit_buffet_path(@buffet), method: :get %>
+  <%# link_to 'Editar', edit_buffet_path(@buffet) %>
+</div>

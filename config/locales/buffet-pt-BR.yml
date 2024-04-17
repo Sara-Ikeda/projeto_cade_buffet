@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      buffet: Buffet
+    attributes:
+      buffet:
+        trade_name: "Nome Fantasia"
+        company_name: "Razão Social"
+        registration_number: "CNPJ"
+        telephone: "Telefone"
+        email: "E-mail"
+        description: "Descrição"
+        payment_types: "Formas de Pagamento"
+        address_id: "Endereço"
+        address: "Endereço"
