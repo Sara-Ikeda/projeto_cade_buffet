@@ -1,10 +1,13 @@
 class Buffet < ApplicationRecord
   belongs_to :address
+  belongs_to :owner
 
-  validates :trade_name, :company_name, :registration_number, :email, 
-            :description, :payment_types, presence: true
+  validates :trade_name, :company_name, :registration_number, :telephone,
+            :email, :description, :payment_types, presence: true
+
+  validates :registration_number, uniqueness: true
 
   def contact
-    telephone? ? "#{telephone} | #{email}" : "#{email}"
+    "#{telephone} | #{email}"
   end
 end

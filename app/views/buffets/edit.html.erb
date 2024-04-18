@@ -2,36 +2,16 @@
   <h2>Editar Buffet</h2>
 
   <% if @buffet.errors.any? %>
-    <dl>
-      <dt>Não foi possível editar:</dt>
+    <strong>Falha ao editar:</strong>
+    <ul>
       <% @buffet.errors.full_messages.each do |msg| %>
-        <dd><%= msg %>!</dd>
+        <li><%= msg %>!</li>
       <% end %>
-    </dl>
+      <%# @address.errors.full_messages.each do |msg| %>
+        <li><%# msg %>!</li>
+      <%# end %>
+    </ul>
   <% end %>
 
-  <%= form_with model: @buffet do |f| %>
-    <div>
-      <%= f.label :trade_name %>
-      <%= f.text_field :trade_name %>
-    </div>
-    <div>
-      <%= f.label :telephone %>
-      <%= f.telephone_field :telephone %>
-    </div>
-    <div>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </div>
-    <div>
-      <%= f.label :payment_types %>
-      <%= f.text_field :payment_types %>
-    </div>
-    <div>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-    </div>
-    
-    <%= f.submit 'Salvar' %>
-  <% end %>
+  <%= render 'form' %>
 </div>

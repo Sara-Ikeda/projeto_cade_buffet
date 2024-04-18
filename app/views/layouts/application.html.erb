@@ -14,12 +14,19 @@
       <%= link_to root_path do %>
         <h1>Cadê Buffet?</h1>
       <% end %>
-      <nav>
-        <h3><%= link_to 'Buffets', buffets_path %></h3>
-      </nav>
     </header>
+    <nav>
+      <h3><%= link_to 'Buffets', buffets_path %></h3>
+      <% if owner_signed_in? %>
+        <%= current_owner.email %>
+        <%= link_to 'Meu Buffet', buffet_path(current_owner.buffet) if !current_owner.buffet.nil? %>
+        <%= button_to 'Sair', destroy_owner_session_path, method: :delete %>
+      <% end %>
+    </nav>
+  
     <main>
-      <%= notice %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
   </body>

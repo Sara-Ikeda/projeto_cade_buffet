@@ -15,6 +15,6 @@
       <strong>Tipos de Pagamento: </strong><%= @buffet.payment_types %>
     </li>
   </ul>
-  <%= button_to 'Editar', edit_buffet_path(@buffet), method: :get %>
+  <%= button_to 'Editar', edit_buffet_path(@buffet), method: :get if @buffet.owner == current_owner %>
   <%# link_to 'Editar', edit_buffet_path(@buffet) %>
 </div>

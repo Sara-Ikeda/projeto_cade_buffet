@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_205105) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_17_210343) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.integer "number"
@@ -33,8 +33,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_16_205105) do
     t.string "payment_types"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id", null: false
     t.index ["address_id"], name: "index_buffets_on_address_id"
+    t.index ["owner_id"], name: "index_buffets_on_owner_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
   add_foreign_key "buffets", "addresses"
+  add_foreign_key "buffets", "owners"
 end
