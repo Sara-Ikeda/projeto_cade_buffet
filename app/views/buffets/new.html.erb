@@ -1,5 +1,17 @@
 <div>
   <h2>Cadastrar Buffet</h2>
 
+  <% if @buffet.errors.any? %>
+    <strong>Falha ao criar:</strong>
+    <ul>
+      <% @buffet.errors.full_messages.each do |msg| %>
+        <li><%= msg %>!</li>
+      <% end %>
+      <% @buffet.address.errors.full_messages.each do |msg| %>
+        <li><%= msg %>!</li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= render 'form' %>
 </div>

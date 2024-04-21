@@ -2,6 +2,17 @@ require 'rails_helper'
 
 describe 'Usuário se autentica' do
   context 'como Dono de Buffet' do
+    it 'a partir da página inicial' do
+      Owner.create!(email: 'sara@email.com', password: 'password')
+
+      visit root_path
+
+      within('div#owner_sign_in') do
+        expect(page).to have_content 'Dono de Buffet?'
+        expect(page).to have_link 'Entrar'
+      end
+    end
+    
     it 'com sucesso' do
       Owner.create!(email: 'sara@email.com', password: 'password')
 
@@ -9,15 +20,13 @@ describe 'Usuário se autentica' do
       within('div#owner_sign_in') do
         click_on 'Entrar'
       end
-      within('form') do
-        fill_in 'E-mail', with: 'sara@email.com'
-        fill_in 'Senha', with: 'password'
-        click_on 'Entrar'
-      end
+      fill_in 'E-mail', with: 'sara@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
 
+      expect(page).to_not have_content 'Dono de Buffet?'
       expect(page).to have_content 'sara@email.com'
       expect(page).to have_button 'Sair'
-      expect(page).to_not have_content 'Dono de Buffet?'
     end
 
     it 'e faz log out' do

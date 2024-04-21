@@ -1,5 +1,5 @@
 class Buffet < ApplicationRecord
-  belongs_to :address
+  belongs_to :address, validate: true
   belongs_to :owner
 
   validates :trade_name, :company_name, :registration_number, :telephone,

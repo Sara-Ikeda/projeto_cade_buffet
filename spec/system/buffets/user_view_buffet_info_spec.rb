@@ -30,6 +30,7 @@ describe 'Usuário vê informações de um Buffet' do
                    registration_number: '56862478000652', telephone: '55961524798',
                    email: 'noivos@contato.com', address: address, description: 'Buffet especializado em casamento',
                    payment_types: 'Cartão Débito/Crédito', owner: owner)
+
     visit root_path
     click_on 'Buffets'
     click_on 'Gourmet dos Noivos'

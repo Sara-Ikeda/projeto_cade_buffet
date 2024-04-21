@@ -2,6 +2,14 @@ require 'rails_helper'
 
 describe 'Usuário vê lista de Buffets' do
   it 'a partir da tela inicial' do
+    visit root_path
+    
+    within('nav') do
+      expect(page).to have_link 'Buffets'
+    end
+  end
+
+  it 'com sucesso' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
                               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -18,6 +26,7 @@ describe 'Usuário vê lista de Buffets' do
     expect(page).to have_content 'Contato: 55961524798 | noivos@contato.com'
     expect(page).to have_content 'Localização: São Paulo - SP'
   end
+  
 
   it 'mas não há buffets cadastrados' do
     visit root_path

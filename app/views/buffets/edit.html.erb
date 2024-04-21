@@ -7,9 +7,9 @@
       <% @buffet.errors.full_messages.each do |msg| %>
         <li><%= msg %>!</li>
       <% end %>
-      <%# @address.errors.full_messages.each do |msg| %>
-        <li><%# msg %>!</li>
-      <%# end %>
+      <% @buffet.address.errors.full_messages.each do |msg| %>
+        <li><%= msg %>!</li>
+      <% end %>
     </ul>
   <% end %>
 
