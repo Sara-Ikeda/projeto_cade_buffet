@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cria um pedido' do
+describe 'Usuário cria um Buffet' do
   it 'e não está autenticado' do
     
     post(buffets_path, params: { buffet: {trade_name: '', registration_number: '65845268000269'}})

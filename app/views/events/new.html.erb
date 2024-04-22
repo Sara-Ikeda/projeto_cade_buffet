@@ -1,0 +1,47 @@
+<h1>Adicionar novo Tipo de Evento</h1>
+
+<%= form_with model: @event do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :event_description %>
+    <%= f.text_area :event_description %>
+  </div>
+  <div>
+    <%= f.label :minimum_of_people %>
+    <%= f.number_field :minimum_of_people %>
+  </div>
+  <div>
+    <%= f.label :maximum_of_people %>
+    <%= f.number_field :maximum_of_people %>
+  </div>
+  <div>
+    <%= f.label :duration %>(em min)
+    <%= f.number_field :duration %>
+  </div>
+  <div>
+    <%= f.label :menu %>
+    <%= f.text_area :menu %>
+  </div>
+  <div>
+    <%= f.label :alcoholic_drink %>
+    <%= f.check_box :alcoholic_drink, {}, :provided, :unprovided %>
+  </div>
+  <div>
+    <%= f.label :ornamentation %>
+    <%= f.check_box :ornamentation, {}, :provided, :unprovided %>
+  </div>
+  <div>
+    <%= f.label :valet %>
+    <%= f.check_box :valet, {}, :provided, :unprovided %>
+  </div>
+  <div>
+    <%= f.label :locality %>
+    <%= f.check_box :locality, {}, :only_on_site, :of_choice %>
+    <%= f.label I18n.t(:of_choice) %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>

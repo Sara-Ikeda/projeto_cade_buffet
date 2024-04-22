@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário edita um pedido' do
+describe 'Usuário edita um buffet' do
   it 'e não é dono' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50,

@@ -1,0 +1,22 @@
+pt-BR:
+  provided: 'Fornecido'
+  unprovided: 'Não Fornecido'
+  only_on_site: 'Somento no Local'
+  of_choice: 'De Escolha'
+  activerecord:
+    models:
+      event: Tipo de Evento
+    attributes:
+      event:
+        name: 'Nome'
+        event_description: 'Descrição'
+        minimum_of_people: 'Quantidade mínima de pessoas'
+        maximum_of_people: 'Quantidade máxima de pessoas'
+        duration: 'Duração padrão'
+        menu: 'Cardápio'
+        alcoholic_drink: 'Bebida Alcoólica'
+        ornamentation: 'Decoração'
+        valet: 'Serviço de Estacionamento (Valet)'
+        locality: 'Localização'
+        buffet_id: 'Buffet'
+        buffet: 'Buffet'
