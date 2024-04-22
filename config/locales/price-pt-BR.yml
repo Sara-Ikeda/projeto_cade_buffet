@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      price: Preços-Base
+    attributes:
+      price:
+        minimum_cost: 'Valor mínimo'
+        add_cost_by_person: 'Valor adicional por pessoa'
+        add_cost_by_hour: 'Valor adicional por hora extra'
+        weekday: 'Dias'

@@ -22,8 +22,10 @@ describe 'Usuário se autentica' do
       end
       fill_in 'E-mail', with: 'sara@email.com'
       fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-
+      within('form') do
+        click_on 'Entrar'
+      end
+      
       expect(page).to_not have_content 'Dono de Buffet?'
       expect(page).to have_content 'sara@email.com'
       expect(page).to have_button 'Sair'

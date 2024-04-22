@@ -1,5 +1,15 @@
 <h1>Adicionar novo Tipo de Evento</h1>
 
+
+  <% if @event.errors.any? %>
+    <strong>Não foi possível adicionar:</strong>
+    <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %>!</li>
+      <% end %>
+    </ul>
+  <% end %>
+
 <%= form_with model: @event do |f| %>
   <div>
     <%= f.label :name %>

@@ -1,0 +1,22 @@
+<h1>Adicionar Preço-Base</h1>
+
+<%= form_with model: @price do |f| %>
+  <div>
+    <%= f.label :minimum_cost %>
+    <%= f.number_field :minimum_cost %>
+  </div>
+  <div>
+    <%= f.label :add_cost_by_person %>
+    <%= f.number_field :add_cost_by_person %>
+  </div>
+  <div>
+    <%= f.label :add_cost_by_hour %>
+    <%= f.number_field :add_cost_by_hour %>
+  </div>
+  <div>
+    <%= f.label :weekday %>
+    <%= f.select :weekday, ["Dias Úteis", "Fim de Semana"] %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>

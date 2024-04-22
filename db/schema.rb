@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_021608) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_124657) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.integer "number"
@@ -67,7 +67,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_021608) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.integer "minimum_cost"
+    t.integer "add_cost_by_person"
+    t.integer "add_cost_by_hour"
+    t.string "weekday"
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_prices_on_event_id"
+  end
+
   add_foreign_key "buffets", "addresses"
   add_foreign_key "buffets", "owners"
   add_foreign_key "events", "buffets"
+  add_foreign_key "prices", "events"
 end

@@ -1,4 +1,10 @@
 class EventsController < ApplicationController
+  before_action :authenticate_owner!
+  skip_before_action :authenticate_owner!, only: [:show]
+  
+  def show
+    @event = Event.find(params[:id])
+  end
   def new
     @event = Event.new
   end
@@ -13,7 +19,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event.buffet, notice: 'Evento adicionado com sucesso!'
     else
-      render 'new'
+    render 'new'
     end
   end
+
 end

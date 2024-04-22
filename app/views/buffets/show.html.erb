@@ -24,25 +24,10 @@
   <% else %>
     <div>
       <% @buffet.events.each do |event| %>
-        <h2><strong><%= event.name %></strong></h2>
+        <h2><strong><%= link_to event.name, event_path(event) %></strong></h2>
         <h3><%= event.event_description %></h3>
-        <dl>
-          <dt>Quantidade mínima de pessoas:</dt>
-          <dd><%= event.minimum_of_people %></dd>
-          <dt>Quantidade máxima de pessoas:</dt>
-          <dd><%= event.maximum_of_people %></dd>
-          <dt>Duração padrão:</dt>
-          <dd><%= event.duration %></dd>
-          <dt>Cardápio:</dt>
-          <dd><%= event.menu %></dd>
-          <dt>Serviços Extras:</dt>
-          <dd>Bebida Alcoólica: <%= I18n.t(event.alcoholic_drink) %></dd>
-          <dd>Decoração: <%= I18n.t(event.ornamentation) %></dd>
-          <dd>Serviço de Estacionamento (Valet): <%= I18n.t(event.valet) %></dd>
-          <dd>Localização: <%= I18n.t(event.locality) %></dd>
-        </dl>
       <% end %>
     </div>
   <% end %>
-  <%= button_to 'Adicionar Evento', new_event_path, method: :get if @buffet.owner == current_owner%>
+  <%= button_to 'Adicionar Evento', new_event_path, method: :get if @buffet.owner == current_owner %>
 </div>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Dono do Buffet adiciona evento' do
-  it 'a partir da página do seu buffet' do
+describe 'Dono do Buffet define preço' do
+  it 'a partir do evento' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -9,16 +9,21 @@ describe 'Dono do Buffet adiciona evento' do
               registration_number: '56862478000652', telephone: '55961524798',
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
+    event = Event.create!(name: 'Festa de Casamento', event_description: 
+      'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+      duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+      alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
     login_as(owner)
     visit root_path
     click_on 'Meu Buffet'
-    click_on 'Adicionar Evento'
+    click_on 'Festa de Casamento'
+    click_on 'Definir Preços-Base'
 
-    expect(current_path).to eq new_event_path
+    expect(current_path).to eq new_price_path
   end
 
-  it 'somente no seu própio buffet' do
+  it 'somente no evento do seu própio buffet' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -26,6 +31,10 @@ describe 'Dono do Buffet adiciona evento' do
               registration_number: '56862478000652', telephone: '55961524798',
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
+    event = Event.create!(name: 'Festa de Casamento', event_description: 
+      'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+      duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+      alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
     other_owner = Owner.create!(email: 'ikeda@email.com', password: '123654')
     other_buffet = Buffet.create!(trade_name: 'Doces e Salgados SP', company_name: 'Doces e Salgados LA',
               registration_number: '56868423000652', telephone: '55961698471',
@@ -33,9 +42,9 @@ describe 'Dono do Buffet adiciona evento' do
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
     
     login_as(other_owner)
-    visit buffet_path(buffet.id)
+    visit event_path(event.id)
 
-    expect(page).to_not have_button 'Adicionar Evento'
+    expect(page).to_not have_link 'Definir Preços-Base'
   end
 
   it 'com sucesso' do
@@ -46,52 +55,29 @@ describe 'Dono do Buffet adiciona evento' do
               registration_number: '56862478000652', telephone: '55961524798',
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
+    event = Event.create!(name: 'Festa de Casamento', event_description: 
+      'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+      duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+      alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
     login_as(owner)
     visit root_path
     click_on 'Meu Buffet'
-    click_on 'Adicionar Evento'
-    fill_in 'Nome',with: 'Festa de Casamento'
-    fill_in 'Descrição',with: 'Todos os serviços para o seu casamento perfeito.'
-    fill_in 'Quantidade mínima de pessoas',with: '100'
-    fill_in 'Quantidade máxima de pessoas',with: '250'
-    fill_in 'Duração padrão',with: '180'
-    fill_in 'Cardápio',with: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.'
-    check 'Bebida Alcoólica'
-    check 'Decoração'
-    check 'Serviço de Estacionamento (Valet)'
-    uncheck 'Localização'
+    click_on 'Festa de Casamento'
+    click_on 'Definir Preços-Base'
+
+    fill_in 'Valor mínimo', with: 1_000
+    fill_in 'Valor adicional por pessoa', with: 100
+    fill_in 'Valor adicional por hora extra', with: 200
+    select 'Dias Úteis', from: 'Dias'
     click_on 'Salvar'
 
-    expect(current_path).to eq buffet_path(buffet.id)
-    expect(page).to have_content 'Evento adicionado com sucesso!'
-    expect(page).to have_content 'Festa de Casamento'
-    expect(page).to have_content 'Todos os serviços para o seu casamento perfeito.'
-  end
-  
-  it 'mas falha' do
-    owner = Owner.create!(email: 'sara@email.com', password: 'password')
-    address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
-              city: 'São Paulo', state: 'SP', zip: '01153000')
-    buffet = Buffet.create!(trade_name: 'Gourmet dos Noivos', company_name: 'Buffet Gourmet LTDA',
-              registration_number: '56862478000652', telephone: '55961524798',
-              email: 'noivos@contato.com', address: address, owner: owner,
-              description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
-
-    login_as(owner)
-    visit root_path
-    click_on 'Meu Buffet'
-    click_on 'Adicionar Evento'
-    fill_in 'Nome',with: 'Festas de Casamento'
-    fill_in 'Descrição',with: ''
-    fill_in 'Quantidade máxima de pessoas',with: ''
-    fill_in 'Duração padrão',with: '180'
-    uncheck 'Bebida Alcoólica'
-    click_on 'Salvar'
-
-    expect(page).to have_content 'Não foi possível adicionar:'
-    expect(page).to have_content 'Descrição não pode ficar em branco!'
-    expect(page).to have_content 'Quantidade máxima de pessoas não pode ficar em branco!'
+    expect(current_path).to eq event_path(event)
+    expect(page).to have_content 'Preços-Base adicionado à Festa de Casamento'
+    expect(page).to have_content 'Para Dias Úteis'
+    expect(page).to have_content 'Valor mínimo: R$ 1000,00'
+    expect(page).to have_content 'Valor adicional por pessoa: R$ 100,00'
+    expect(page).to have_content 'Valor adicional por hora extra: R$ 200,00'
   end
   
 end
