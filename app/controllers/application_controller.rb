@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :buffet_is_required
+  before_action :authenticate_owner!
 
   protected
 

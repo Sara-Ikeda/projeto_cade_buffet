@@ -1,24 +1,25 @@
 class PricesController < ApplicationController
-  def new
-    @price = Price.new
-  end
+  before_action :set_event_and_check_owner
+  def new ; end
 
   def create
-    @price = Price.last
-
     price_params = params.require(:price).permit(:minimum_cost, 
       :add_cost_by_person, :add_cost_by_hour, :weekday)
 
-    
-    @price.minimum_cost = price_params[:minimum_cost]
-    @price.add_cost_by_person = price_params[:add_cost_by_person]
-    @price.add_cost_by_hour = price_params[:add_cost_by_hour]
-    @price.weekday = price_params[:weekday]
-
+    @price = @event.prices.create(price_params)
     if @price.save
-      redirect_to event_path(@price.event), notice: 'Preços-Base adicionado à Festa de Casamento'
+      redirect_to buffet_path(@event.buffet), notice: "Preços-Base adicionado à #{@event.name}"
     else
       render 'new'
+    end
+  end
+
+  private
+
+  def set_event_and_check_owner
+    @event = Event.find(params[:event_id])
+    if @event.buffet.owner != current_owner
+      redirect_to root_path, notice: 'Você não tem acesso a esse Buffet!'
     end
   end
 end

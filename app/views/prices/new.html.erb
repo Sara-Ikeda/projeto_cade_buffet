@@ -1,6 +1,6 @@
 <h1>Adicionar Preço-Base</h1>
 
-<%= form_with model: @price do |f| %>
+<%= form_with model: [@event, Price.new] do |f| %>
   <div>
     <%= f.label :minimum_cost %>
     <%= f.number_field :minimum_cost %>

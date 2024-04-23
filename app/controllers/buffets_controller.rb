@@ -1,6 +1,5 @@
 class BuffetsController < ApplicationController
   skip_before_action :buffet_is_required, only: [:new, :create]
-  before_action :authenticate_owner!
   skip_before_action :authenticate_owner!, only: [:index, :show]
 
   def index
@@ -54,9 +53,8 @@ class BuffetsController < ApplicationController
       :trade_name, :company_name, :registration_number,
       :telephone, :email, :description, :payment_types)
     
-    @buffet = Buffet.new(buffet_params)
+    @buffet = current_owner.build_buffet(buffet_params)
     @buffet.build_address(address_params)
-    @buffet.owner = current_owner
     
     if @buffet.save
       redirect_to @buffet, notice: "Buffet cadastrado com sucesso!"

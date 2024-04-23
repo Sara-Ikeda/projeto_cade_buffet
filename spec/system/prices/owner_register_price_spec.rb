@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Dono do Buffet define preço' do
-  it 'a partir do evento' do
+  it 'a partir da do seu buffet (página inicial)' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -16,10 +16,9 @@ describe 'Dono do Buffet define preço' do
 
     login_as(owner)
     visit root_path
-    click_on 'Festa de Casamento'
     click_on 'Definir Preços-Base'
 
-    expect(current_path).to eq new_price_path
+    expect(current_path).to eq new_event_price_path(event.id)
   end
 
   it 'somente no evento do seu própio buffet' do
@@ -41,9 +40,10 @@ describe 'Dono do Buffet define preço' do
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
     
     login_as(other_owner)
-    visit event_path(event.id)
+    visit new_event_price_path(event.id)
 
-    expect(page).to_not have_link 'Definir Preços-Base'
+    expect(current_path).to_not eq new_event_price_path(event.id)
+    expect(page).to_not have_link 'Você não tem acesso a esse Buffet.'
   end
 
   it 'com sucesso' do
@@ -61,7 +61,6 @@ describe 'Dono do Buffet define preço' do
 
     login_as(owner)
     visit root_path
-    click_on 'Festa de Casamento'
     click_on 'Definir Preços-Base'
 
     fill_in 'Valor mínimo', with: 1_000
@@ -70,7 +69,7 @@ describe 'Dono do Buffet define preço' do
     select 'Dias Úteis', from: 'Dias'
     click_on 'Salvar'
 
-    expect(current_path).to eq event_path(event)
+    expect(current_path).to eq buffet_path(buffet)
     expect(page).to have_content 'Preços-Base adicionado à Festa de Casamento'
     expect(page).to have_content 'Para Dias Úteis'
     expect(page).to have_content 'Valor mínimo: R$ 1000,00'

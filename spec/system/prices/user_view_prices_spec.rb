@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário vê informações do evento' do
+describe 'Usuário vê preços do evento' do
   it 'na página do buffet' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
@@ -13,22 +13,19 @@ describe 'Usuário vê informações do evento' do
             'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
             duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
             alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
+    price = Price.create!(minimum_cost: 10000, add_cost_by_person: 200,
+            add_cost_by_hour: 300 ,weekday: 'Dias Úteis', event: event)
 
     visit root_path
     click_on 'Gourmet dos Noivos'
 
-    expect(page).to have_content 'Festa de Casamento'
-    expect(page).to have_content 'Todos os serviços para o seu casamento perfeito.'
-    expect(page).to have_content 'Quantidade mínima de pessoas: 100'
-    expect(page).to have_content 'Quantidade máxima de pessoas: 250'
-    expect(page).to have_content 'Cardápio: Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.'
-    expect(page).to have_content 'Bebida Alcoólica: Fornecido'
-    expect(page).to have_content 'Decoração: Fornecido'
-    expect(page).to have_content 'Serviço de Estacionamento (Valet): Fornecido'
-    expect(page).to have_content 'Localização: Somento no Local'
+    expect(page).to have_content 'Para Dias Úteis'
+    expect(page).to have_content 'Valor mínimo: R$ 10000,00'
+    expect(page).to have_content 'Valor adicional por pessoa: R$ 200,00'
+    expect(page).to have_content 'Valor adicional por hora extra: R$ 300,00'
   end
 
-  it 'e ainda não há eventos' do
+  it 'e ainda não há preços' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -36,11 +33,15 @@ describe 'Usuário vê informações do evento' do
               registration_number: '56862478000652', telephone: '55961524798',
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
-
+    event = Event.create!(name: 'Festa de Casamento', event_description: 
+              'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+              duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+              alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
+      
     visit root_path
     click_on 'Gourmet dos Noivos'
 
-    expect(page).to have_content 'Não há tipos de eventos cadastrados para esse Buffet!'
+    expect(page).to have_content 'Ainda não foram cadastrados preços para esse evento!'
   end
   
 end

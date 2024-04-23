@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "buffets#index"
 
   resources :buffets, only: [:show, :edit, :update, :new, :create]
-  resources :events, only: [:new, :create, :show]
-  resources :prices, only: [:new, :create]
+  resources :events, only: [:new, :create] do
+    resources :prices, only: [:new, :create]
+  end
 end
