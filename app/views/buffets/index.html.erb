@@ -1,15 +1,13 @@
-<div>
+<section id="buffets">
   <% if @buffets.any? %>
     <% @buffets.each do |b| %>
-      <h3><%= link_to b.trade_name, buffet_path(b) %></h3>
+      <h2><%= link_to b.trade_name, buffet_path(b) %></h2>
       <dl>
-        <dt>Contato:</dt>
-        <dd><%= b.contact %></dd>
         <dt>Localização:</dt>
-        <dd><%= b.address.city %> - <%= b.address.state %></dd>
+        <dd><%= b.address.city %>/<%= b.address.state %></dd>
       </dl>
     <% end %>
   <% else %>
     <p>Não há Buffets disponíveis no momento.</p>
   <% end %>
-</div>
+</section>

@@ -1,13 +1,16 @@
 class BuffetsController < ApplicationController
   skip_before_action :buffet_is_required, only: [:new, :create]
-  before_action :authenticate_owner!, only: [:edit, :update, :new, :create]
+  before_action :authenticate_owner!
+  skip_before_action :authenticate_owner!, only: [:index, :show]
 
   def index
+    redirect_to current_owner.buffet if owner_signed_in?
     @buffets = Buffet.all
   end
 
   def show
     @buffet = Buffet.find(params[:id])
+    redirect_to current_owner.buffet if owner_signed_in? && @buffet != current_owner.buffet
   end
 
   def edit

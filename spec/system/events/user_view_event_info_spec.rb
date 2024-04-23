@@ -15,7 +15,6 @@ describe 'Usuário vê informações do evento' do
             alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
     visit root_path
-    click_on 'Buffets'
     click_on 'Gourmet dos Noivos'
     click_on 'Festa de Casamento'
 

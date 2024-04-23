@@ -16,7 +16,6 @@ describe 'Dono do Buffet define preço' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Festa de Casamento'
     click_on 'Definir Preços-Base'
 
@@ -62,7 +61,6 @@ describe 'Dono do Buffet define preço' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Festa de Casamento'
     click_on 'Definir Preços-Base'
 

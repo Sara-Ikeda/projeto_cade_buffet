@@ -15,16 +15,13 @@
         <h1>Cadê Buffet?</h1>
       <% end %>
     </header>
+
     <nav>
-      <%= link_to 'Buffets', buffets_path %></h3>
       <div id="owner_sign_in">
       <% unless owner_signed_in? %>
         <strong>Dono de Buffet?</strong><%= link_to 'Entrar', new_owner_session_path %>
-      <% else owner_signed_in? %>
+      <% else %>
         <%= current_owner.email %>
-        <% if current_owner.buffet.present? && current_owner.buffet.valid? %>
-          | <%= link_to 'Meu Buffet', buffet_path(current_owner.buffet) %>
-        <% end %>
         <%= button_to 'Sair', destroy_owner_session_path, method: :delete %>
       <% end %>
       </div>

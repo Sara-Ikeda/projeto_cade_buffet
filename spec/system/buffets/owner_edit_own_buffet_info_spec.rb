@@ -15,7 +15,7 @@ describe 'Dono edita as informações do Buffet' do
     expect(current_path).to eq new_owner_session_path
   end
 
-  it 'a partir da página do seu buffet' do
+  it 'a partir da página do seu buffet (página inicial)' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -26,9 +26,6 @@ describe 'Dono edita as informações do Buffet' do
 
     login_as(owner)
     visit root_path
-    within('nav') do
-      click_on 'Meu Buffet'
-    end
     click_on 'Editar'
 
     expect(page).to have_content 'Editar Buffet'
@@ -59,7 +56,6 @@ describe 'Dono edita as informações do Buffet' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Editar'
     fill_in 'Nome Fantasia', with: 'Gourmet Bem-Casado'
     fill_in 'E-mail', with: 'casadinho@contato.com'
@@ -88,7 +84,6 @@ describe 'Dono edita as informações do Buffet' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Editar'
     fill_in 'Nome Fantasia', with: 'Gourmet Bem-Casado'
     fill_in 'Telefone', with: ''
@@ -122,7 +117,6 @@ describe 'Dono edita as informações do Buffet' do
     visit edit_buffet_path(buffet.id)
 
     expect(current_path).to_not eq edit_buffet_path(buffet.id)
-    expect(current_path).to eq root_path
     expect(page).to have_content 'Você não pode editar esse buffet!'
   end
 end

@@ -12,7 +12,6 @@ describe 'Dono do Buffet adiciona evento' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Adicionar Evento'
 
     expect(current_path).to eq new_event_path
@@ -49,7 +48,6 @@ describe 'Dono do Buffet adiciona evento' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Adicionar Evento'
     fill_in 'Nome',with: 'Festa de Casamento'
     fill_in 'Descrição',with: 'Todos os serviços para o seu casamento perfeito.'
@@ -80,7 +78,6 @@ describe 'Dono do Buffet adiciona evento' do
 
     login_as(owner)
     visit root_path
-    click_on 'Meu Buffet'
     click_on 'Adicionar Evento'
     fill_in 'Nome',with: 'Festas de Casamento'
     fill_in 'Descrição',with: ''

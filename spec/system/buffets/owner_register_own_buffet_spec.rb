@@ -40,7 +40,7 @@ describe 'Dono é redirecionado para cadastrar seu Buffet' do
       fill_in 'Senha', with: 'password'
       fill_in 'Confirme sua senha', with: 'password'
       click_on 'Criar Conta'
-      click_on 'Buffets'
+      click_on 'Cadê Buffet?'
 
       expect(current_path).to eq new_buffet_path
       expect(page).to have_content 'Você ainda não cadastrou seu Buffet!'
