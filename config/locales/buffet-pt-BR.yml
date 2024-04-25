@@ -1,7 +1,12 @@
 pt-BR:
+  found:
+    one: "encontrado"
+    other: "encontrados"
   activerecord:
     models:
-      buffet: Buffet
+      buffet:
+        one: Buffet
+        other: Buffets
     attributes:
       buffet:
         trade_name: "Nome Fantasia"

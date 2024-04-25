@@ -1,0 +1,12 @@
+<div id="search-buffets">
+  <h1>Resultados da Busca por: <%= @query %></h1>
+  
+  <strong><%= "#{@count} #{Buffet.model_name.human(count: @count)} #{I18n.t(:found, count: @count)}." %></strong>
+
+  <% @search_buffets.each do |buffet| %>
+    <div>
+      <h2><strong><%= link_to buffet.trade_name, buffet_path(buffet) %></strong></h2>
+      <h2><%= buffet.description %></h2>
+    </div>
+  <% end %>
+</div>

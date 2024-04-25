@@ -22,7 +22,7 @@ describe 'Usuário se autentica' do
       end
       fill_in 'E-mail', with: 'sara@email.com'
       fill_in 'Senha', with: 'password'
-      within('form') do
+      within('div.actions') do
         click_on 'Entrar'
       end
       

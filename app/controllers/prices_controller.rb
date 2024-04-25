@@ -1,6 +1,8 @@
 class PricesController < ApplicationController
   before_action :set_event_and_check_owner
-  def new ; end
+  def new
+    @price = Price.new
+  end
 
   def create
     price_params = params.require(:price).permit(:minimum_cost, 

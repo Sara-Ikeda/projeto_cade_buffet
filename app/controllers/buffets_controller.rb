@@ -1,6 +1,6 @@
 class BuffetsController < ApplicationController
-  skip_before_action :buffet_is_required, only: [:new, :create]
-  skip_before_action :authenticate_owner!, only: [:index, :show]
+  skip_before_action :buffet_is_required, only: [:new, :create, :search]
+  skip_before_action :authenticate_owner!, only: [:index, :show, :search]
 
   def index
     redirect_to current_owner.buffet if owner_signed_in?
@@ -61,5 +61,13 @@ class BuffetsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def search
+    @query = params[:query]
+    @search_buffets = Buffet.left_joins(:address, :events).where("trade_name LIKE '%#{@query}%'").or(
+                      Buffet.where(address: { city: @query})).or(
+                      Buffet.where("events.name LIKE ?", "%#{@query}%")).order(trade_name: :asc)
+    @count = @search_buffets.count
   end
 end

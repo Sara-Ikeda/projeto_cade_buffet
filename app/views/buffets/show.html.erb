@@ -26,5 +26,6 @@
         <div><%= render event %></div>
       <% end %>
   <% end %>
+    
   <%= button_to 'Adicionar Evento', new_event_path, method: :get if @buffet.owner == current_owner %>
 </div>

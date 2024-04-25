@@ -10,9 +10,4 @@ class Event < ApplicationRecord
   enum valet: { unprovided: 0, provided: 1 }, _prefix: :valet
   enum locality: { only_on_site: 0, of_choice: 1 }, _prefix: :locality
 
-  # private
-
-  def newPrice
-    self.prices << Price.new
-  end
 end

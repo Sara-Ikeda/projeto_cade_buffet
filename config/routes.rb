@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   }
   root "buffets#index"
 
-  resources :buffets, only: [:show, :edit, :update, :new, :create]
+  resources :buffets, only: [:show, :edit, :update, :new, :create] do
+    get 'search', on: :collection
+  end
+
   resources :events, only: [:new, :create] do
     resources :prices, only: [:new, :create]
   end

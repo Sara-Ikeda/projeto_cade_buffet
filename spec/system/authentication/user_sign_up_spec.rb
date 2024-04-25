@@ -21,12 +21,10 @@ describe 'Usuário cria conta' do
         click_on 'Entrar'
       end
       click_on 'Criar conta'
-      within('form') do
-        fill_in 'E-mail', with: 'sara@email.com'
-        fill_in 'Senha', with: 'password'
-        fill_in 'Confirme sua senha', with: 'password'
-        click_on 'Criar Conta'
-      end
+      fill_in 'E-mail', with: 'sara@email.com'
+      fill_in 'Senha', with: 'password'
+      fill_in 'Confirme sua senha', with: 'password'
+      click_on 'Criar Conta'
 
       expect(page).to have_content 'Bem-vindo(a)! Cadastro realizado com sucesso.'
       expect(page).to have_content 'sara@email.com'
