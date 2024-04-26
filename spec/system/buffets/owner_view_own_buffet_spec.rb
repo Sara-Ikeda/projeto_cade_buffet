@@ -10,7 +10,7 @@ describe 'Dono vê informações do própio Buffet' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
 
     expect(current_path).to eq buffet_path(buffet.id)
@@ -33,7 +33,7 @@ describe 'Dono vê informações do própio Buffet' do
               email: 'doces@salgados.com', address: address, owner: other_owner,
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
 
-    login_as(other_owner)
+    login_as(other_owner, scope: :owner)
     visit buffet_path(buffet.id)
 
     expect(current_path).to_not eq buffet_path(buffet.id)

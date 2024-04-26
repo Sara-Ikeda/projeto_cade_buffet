@@ -14,7 +14,7 @@ describe 'Dono do Buffet define preço' do
       duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
       alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Definir Preços-Base'
 
@@ -39,7 +39,7 @@ describe 'Dono do Buffet define preço' do
               email: 'doces@salgados.com', address: address, owner: other_owner,
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
     
-    login_as(other_owner)
+    login_as(other_owner, scope: :owner)
     visit new_event_price_path(event.id)
 
     expect(current_path).to_not eq new_event_price_path(event.id)
@@ -59,7 +59,7 @@ describe 'Dono do Buffet define preço' do
       duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
       alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Definir Preços-Base'
 
@@ -90,7 +90,7 @@ describe 'Dono do Buffet define preço' do
       duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
       alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Definir Preços-Base'
 

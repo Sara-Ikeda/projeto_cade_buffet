@@ -1,5 +1,6 @@
 class BuffetsController < ApplicationController
-  skip_before_action :buffet_is_required, only: [:new, :create, :search]
+  skip_before_action :buffet_is_required, only: [:new, :create]
+  skip_before_action :check_user, only: [:index, :show, :search]
   skip_before_action :authenticate_owner!, only: [:index, :show, :search]
 
   def index

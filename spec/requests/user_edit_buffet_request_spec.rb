@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário edita um buffet' do
-  it 'e não é dono' do
+  it 'mas não é dono' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50,
               city: 'São Paulo', state: 'SP', zip: '01153000')
@@ -15,8 +15,17 @@ describe 'Usuário edita um buffet' do
               email: 'doces@salgados.com', address: address, owner: other_owner,
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
 
-    login_as(other_owner)
+    post(owner_session_path, params: {owner: { email: other_owner.email, password: other_owner.password }})
     patch(buffet_path(buffet.id), params: { buffet: {address_id: 2}})
+
+    expect(response).to redirect_to root_path
+  end
+
+  it 'mas está autenticado como Cliente' do
+    customer = Customer.create!(name: 'Sara', cpf: 68597496358, email: 'sara@email.com', password: 'password')
+
+    post(customer_session_path, params: {customer: { email: 'sara@email.com', password: 'password' }})
+    patch(buffet_path(1), params: { buffet: {address_id: 99}})
 
     expect(response).to redirect_to root_path
   end

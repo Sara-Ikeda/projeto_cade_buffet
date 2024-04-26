@@ -108,7 +108,7 @@ describe 'Dono é redirecionado para cadastrar seu Buffet' do
   it 'após relogar sem ter cadastrado antes' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
 
     expect(current_path).to eq new_buffet_path

@@ -25,7 +25,7 @@ describe 'Dono do Buffet adiciona evento' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Adicionar Evento'
     fill_in 'Nome',with: 'Festa de Casamento'
@@ -55,7 +55,7 @@ describe 'Dono do Buffet adiciona evento' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Adicionar Evento'
     fill_in 'Nome',with: 'Festas de Casamento'

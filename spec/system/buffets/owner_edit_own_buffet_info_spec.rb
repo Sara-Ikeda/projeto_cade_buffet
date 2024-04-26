@@ -24,7 +24,7 @@ describe 'Dono edita as informações do Buffet' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Editar'
 
@@ -54,7 +54,7 @@ describe 'Dono edita as informações do Buffet' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Editar'
     fill_in 'Nome Fantasia', with: 'Gourmet Bem-Casado'
@@ -82,7 +82,7 @@ describe 'Dono edita as informações do Buffet' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
 
-    login_as(owner)
+    login_as(owner, scope: :owner)
     visit root_path
     click_on 'Editar'
     fill_in 'Nome Fantasia', with: 'Gourmet Bem-Casado'
@@ -113,7 +113,7 @@ describe 'Dono edita as informações do Buffet' do
               email: 'doces@salgados.com', address: address, owner: other_owner,
               description: 'Doces e salgados para a sua festa', payment_types: 'PIX')
 
-    login_as(other_owner)
+    login_as(other_owner, scope: :owner)
     visit edit_buffet_path(buffet.id)
 
     expect(current_path).to_not eq edit_buffet_path(buffet.id)
