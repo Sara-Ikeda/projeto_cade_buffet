@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Dono do Buffet define preço' do
-  it 'a partir da do seu buffet (página inicial)' do
+  it 'a partir da página do seu buffet (página inicial)' do
     owner = Owner.create!(email: 'sara@email.com', password: 'password')
     address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
               city: 'São Paulo', state: 'SP', zip: '01153000')

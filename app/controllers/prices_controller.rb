@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-  before_action :set_event_and_check_owner
+  before_action :set_event_check_owner_and_prices_availability
   def new
     @price = Price.new
   end
@@ -18,10 +18,12 @@ class PricesController < ApplicationController
 
   private
 
-  def set_event_and_check_owner
+  def set_event_check_owner_and_prices_availability
     @event = Event.find(params[:event_id])
     if @event.buffet.owner != current_owner
       redirect_to root_path, notice: 'Você não tem acesso a esse Buffet!'
+    elsif !@event.available_days?
+      redirect_to root_path
     end
   end
 end

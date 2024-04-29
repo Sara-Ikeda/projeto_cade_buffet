@@ -69,4 +69,5 @@ describe 'Dono do Buffet adiciona evento' do
     expect(page).to have_content 'Descrição não pode ficar em branco!'
     expect(page).to have_content 'Quantidade máxima de pessoas não pode ficar em branco!'
   end
+
 end

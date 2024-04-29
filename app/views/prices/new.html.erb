@@ -25,7 +25,7 @@
   </div>
   <div>
     <%= f.label :weekday %>
-    <%= f.select :weekday, ["Dias Úteis", "Fim de Semana"] %>
+    <%= f.select :weekday, @event.available_days? %>
   </div>
 
   <%= f.submit 'Salvar' %>

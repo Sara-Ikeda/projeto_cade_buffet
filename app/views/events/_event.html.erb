@@ -32,7 +32,7 @@
       </ul>
     <% end %>
   <% end %>
-  <% if owner_signed_in? && event.buffet.owner == current_owner %>
+  <% if owner_signed_in? && event.buffet.owner == current_owner && event.available_days? %>
     <%= link_to 'Definir Preços-Base', new_event_price_path(event.id) %>
   <% end %>
 

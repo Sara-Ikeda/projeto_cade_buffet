@@ -43,11 +43,13 @@ class BuffetsController < ApplicationController
   end
 
   def new
+    return redirect_to root_path if !current_owner.buffet.nil?
     @buffet = Buffet.new
     @address = @buffet.build_address
   end
 
   def create
+    return redirect_to root_path if !current_owner.buffet.nil?
     address_params = params.require(:address).permit(
       :street, :number, :district, :city, :state, :zip)
     buffet_params = params.require(:buffet).permit(
