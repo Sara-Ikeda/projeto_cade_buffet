@@ -1,0 +1,35 @@
+<h1>Novo pedido para o Buffet <%= @buffet.trade_name %> - <%= @event.name %></h1>
+
+<div>
+  <% if @order.errors.any? %>
+    <p>Verifique os erros:</p>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><p><%= msg %>!</p></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<%= form_with(model: [@event, @order]) do |f| %>
+  <div>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+  </div>
+  <div>
+    <%= f.label :number_of_guests %>
+    <%= f.number_field :number_of_guests %>
+  </div>
+  <% if @event.locality_of_choice? %>
+    <div>
+      <%= f.label :address  %>
+      <%= f.text_field :address %>
+    </div>
+    <% end %>
+  <div>
+    <%= f.label :other_details %>
+    <%= f.text_area :other_details %>
+  </div>
+  <%= f.submit 'Enviar' %>
+
+<% end %>

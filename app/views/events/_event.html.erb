@@ -35,5 +35,6 @@
   <% if owner_signed_in? && event.buffet.owner == current_owner && event.available_days? %>
     <%= link_to 'Definir Preços-Base', new_event_price_path(event.id) %>
   <% end %>
-
 </div>
+
+<%= button_to 'Contratar Buffet', new_event_order_path(event), method: :get if !owner_signed_in? %>

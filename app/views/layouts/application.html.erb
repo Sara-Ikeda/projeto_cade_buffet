@@ -31,12 +31,15 @@
           <div id="customer_sign_in">
             <strong>Cliente?</strong><%= link_to 'Entrar', new_customer_session_path %>
           </div>
+
         <% elsif owner_signed_in? %>
           <%= current_owner.email %>
           <%= button_to 'Sair', destroy_owner_session_path, method: :delete %>
+
         <% else %>
             <%= current_customer.name %>
             <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>
+            <%= link_to 'Meus Pedidos', orders_path %>
         <% end %>
       </nav>
 

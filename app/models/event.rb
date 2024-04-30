@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :buffet
   has_many :prices
+  has_many :orders
 
   validates :name, :event_description, :minimum_of_people,
     :maximum_of_people, :duration, :menu, presence: true

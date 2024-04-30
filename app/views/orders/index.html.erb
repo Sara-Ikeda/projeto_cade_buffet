@@ -1,0 +1,17 @@
+<div id="orders"></div>
+  <h1>Meus Pedidos</h1>
+
+  <% if @orders.empty? %>
+    <p>Não há pedidos cadastrados.</p>
+  <% else %>
+    <% @orders.each do |order| %>
+      <div>
+        <dl>
+          <dt>Pedido <%= link_to order.code, order_path(order) %></dt>
+          <dd>Data Desejada: <%= order.date %></dd>
+        </dl>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :check_user
-  before_action :buffet_is_required
   before_action :authenticate_owner!
+  before_action :buffet_is_required
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

@@ -1,0 +1,29 @@
+<div id="order_info">
+  <h1>Pedido <%= @order.code %></h1>
+
+  <ul>
+    <li>
+      <strong>Buffet Contratado:</strong> <%= @order.buffet.trade_name %>
+    </li>
+    <li>
+      <strong>Para o Tipo de Evento:</strong> <%= @order.event.name %>
+    </li>
+    <li>
+      <strong>Número Estimado de Convidados:</strong> <%= @order.number_of_guests %>
+    </li>
+    <li>
+      <strong>Data Desejada:</strong> <%= @order.date %>
+    </li>
+    <% if @order.address.present? %>
+      <li>
+        <strong>Endereço Desejado:</strong> <%= @order.address %>
+      </li>
+    <% end %>
+    <li>
+      <strong>Mais Detalhes:</strong> <%= @order.other_details %>
+    </li>
+    <li>
+      <strong>Status:</strong> <%= I18n.t(@order.status) %>
+    </li>
+  </ul>
+</div>
