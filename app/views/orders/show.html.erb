@@ -12,7 +12,7 @@
       <strong>Número Estimado de Convidados:</strong> <%= @order.number_of_guests %>
     </li>
     <li>
-      <strong>Data Desejada:</strong> <%= @order.date %>
+      <strong>Data Desejada:</strong> <%= I18n.localize(@order.date) %>
     </li>
     <% if @order.address.present? %>
       <li>

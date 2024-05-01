@@ -35,7 +35,7 @@
         <% elsif owner_signed_in? %>
           <%= current_owner.email %>
           <%= button_to 'Sair', destroy_owner_session_path, method: :delete %>
-
+          <%= link_to 'Pedidos', order_index_buffets_path %>
         <% else %>
             <%= current_customer.name %>
             <%= button_to 'Sair', destroy_customer_session_path, method: :delete %>

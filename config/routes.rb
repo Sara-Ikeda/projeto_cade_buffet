@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :buffets, only: [:show, :edit, :update, :new, :create] do
     get 'search', on: :collection
+    get 'order_index', on: :collection
+    get 'order_show', on: :member
   end
 
   resources :events, only: [:new, :create] do

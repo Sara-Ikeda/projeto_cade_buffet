@@ -73,4 +73,15 @@ class BuffetsController < ApplicationController
                       Buffet.where("events.name LIKE ?", "%#{@query}%")).order(trade_name: :asc)
     @count = @search_buffets.count
   end
+
+  def order_index
+    @orders = current_owner.buffet.orders
+  end
+
+  def order_show
+    @order = current_owner.buffet.orders.find(params[:id])
+    
+    @conflict_dates_orders = current_owner.buffet.orders.where(
+                            "date = ? AND code != ?", @order.date, @order.code)
+  end
 end

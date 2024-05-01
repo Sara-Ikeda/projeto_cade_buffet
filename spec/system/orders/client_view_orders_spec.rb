@@ -33,9 +33,9 @@ describe 'Usuário vê listagem de pedidos' do
     click_on 'Meus Pedidos'
 
     expect(page).to have_content "Pedido #{order.code}"
-    expect(page).to have_content "Data Desejada: #{order.date}"
+    expect(page).to have_content "Data Desejada: #{I18n.localize(order.date)}"
     expect(page).to have_content "Pedido #{another_order.code}"
-    expect(page).to have_content "Data Desejada: #{another_order.date}"
+    expect(page).to have_content "Data Desejada: #{I18n.localize(another_order.date)}"
   end
   
   it 'mas não há pedidos' do

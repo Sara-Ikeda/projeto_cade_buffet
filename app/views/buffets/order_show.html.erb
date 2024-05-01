@@ -1,0 +1,39 @@
+<div id="order_pending_info">
+  <h1>Pedido <%= @order.code %></h1>
+
+  <div>
+    <% if @conflict_dates_orders %>
+        <strong>Data Desejada em conflito com:</strong>
+        <ul>
+          <% @conflict_dates_orders.each do |order| %>
+            <li><%= order.code %></li>
+          <% end %>
+        </ul>
+    <% end %>
+  </div>
+
+  <div>
+    <ul>
+      <li>
+        <strong>Tipo de Evento:</strong> <%= @order.event.name %>
+      </li>
+      <li>
+        <strong>Número Estimado de Convidados:</strong> <%= @order.number_of_guests %>
+      </li>
+      <li>
+        <strong>Data Desejada:</strong> <%= I18n.localize(@order.date) %>
+      </li>
+      <% if @order.address.present? %>
+        <li>
+          <strong>Endereço Desejado:</strong> <%= @order.address %>
+        </li>
+      <% end %>
+      <li>
+        <strong>Mais Detalhes:</strong> <%= @order.other_details %>
+      </li>
+      <li>
+        <strong>Status:</strong> <%= I18n.t(@order.status) %>
+      </li>
+    </ul>
+  </div>
+</div>

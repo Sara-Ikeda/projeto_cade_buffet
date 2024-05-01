@@ -1,4 +1,4 @@
-<div id="orders"></div>
+<div id="customer_orders"></div>
   <h1>Meus Pedidos</h1>
 
   <% if @orders.empty? %>
@@ -8,7 +8,7 @@
       <div>
         <dl>
           <dt>Pedido <%= link_to order.code, order_path(order) %></dt>
-          <dd>Data Desejada: <%= order.date %></dd>
+          <dd>Data Desejada: <%= I18n.localize(order.date) %></dd>
         </dl>
       </div>
     <% end %>

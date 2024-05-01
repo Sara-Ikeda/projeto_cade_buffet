@@ -1,7 +1,11 @@
 pt-BR:
-  pending: 'Aguardando Avaliação do Buffet'
-  confirmed: 'Pedido Confirmado'
-  canceled: 'Pedido Cancelado'
+  pending: 'Aguardando Avaliação'
+  confirmed: 
+    one:  'Pedido Confirmado'
+    other:  'Pedidos Confirmados'
+  canceled: 
+    one: 'Pedido Cancelado'
+    other: 'Pedidos Cancelados'
   activerecord:
     models:
       order: Pedido

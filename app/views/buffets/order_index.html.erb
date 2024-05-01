@@ -1,0 +1,32 @@
+<div id="owner_orders">
+  <h1>Pedidos</h1>
+
+  <div>
+    <h2><strong><%= I18n.t(:pending) %></strong></h2>
+    <% if @orders.pending.any? %>
+      <% @orders.pending.each do |order| %>
+        <p>Pedido <%= link_to order.code, order_show_buffet_path(order) %></p>
+      <% end %>
+    <% else %>
+      <p>Não há pedidos aguardando avaliação.</p>
+    <% end %>
+  </div>
+
+  <div>
+    <h2><strong><%= I18n.t(:confirmed, count: 2) %></strong></h2>
+    <% if @orders.confirmed.any? %>
+      <% @orders.confirmed.each do |order| %>
+        <p>Pedido <%= order.code %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <h2><strong><%= I18n.t(:canceled, count: 2) %></strong></h2>
+    <% if @orders.canceled.any? %>
+      <% @orders.canceled.each do |order| %>
+        <p>Pedido <%= order.code %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
