@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_145215) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_000749) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.integer "number"
@@ -69,6 +69,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_145215) do
     t.index ["buffet_id"], name: "index_events_on_buffet_id"
   end
 
+  create_table "order_budgets", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "standard_value"
+    t.date "deadline"
+    t.integer "rate", default: 0
+    t.integer "rate_value"
+    t.string "rate_description"
+    t.string "payment_options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_budgets_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "buffet_id", null: false
@@ -112,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_145215) do
   add_foreign_key "buffets", "addresses"
   add_foreign_key "buffets", "owners"
   add_foreign_key "events", "buffets"
+  add_foreign_key "order_budgets", "orders"
   add_foreign_key "orders", "buffets"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "events"

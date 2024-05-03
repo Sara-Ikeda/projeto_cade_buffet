@@ -38,11 +38,15 @@ describe 'Dono de Buffet vê pedidos para seu Buffet' do
       expect(page).to have_content "Pedido #{another_order.code}"
     end
     within('#owner_orders > div:nth-of-type(2)') do
-      expect(page).to have_content 'Pedidos Confirmados'
-      expect(page).to have_content "Pedido #{order.code}"
+      expect(page).to have_content 'Aprovados'
+      expect(page).to_not have_content "Pedido "
     end
     within('#owner_orders > div:nth-of-type(3)') do
-      expect(page).to have_content 'Pedidos Cancelados'
+      expect(page).to have_content 'Confirmados'
+      expect(page).to have_content "Pedido #{order.code}"
+    end
+    within('#owner_orders > div:nth-of-type(4)') do
+      expect(page).to have_content 'Cancelados'
       expect(page).to_not have_content "Pedido "
     end
   end

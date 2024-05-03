@@ -35,5 +35,7 @@
         <strong>Status:</strong> <%= I18n.t(@order.status) %>
       </li>
     </ul>
+
+    <%= button_to 'Aprovar Pedido', new_order_order_budget_path(@order), method: :get %>
   </div>
 </div>

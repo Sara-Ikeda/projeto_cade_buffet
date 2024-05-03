@@ -1,0 +1,38 @@
+<div>
+  <h1>Orçamento Final</h1>
+
+  <div>
+    <% if @order_budget.errors.any? %>
+      <p>Verifique os campos:</p>
+      <% @order_budget.errors.full_messages.each do |msg| %>
+        <p><%= msg %>!</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <p><strong>Valor-Padrão: </strong><%= @order_budget.standard_value %>,00</p>
+
+  <%= form_with model: [@order, @order_budget] do |f| %>
+    <div>
+      <%= f.label :deadline %>
+      <%= f.date_field :deadline %>
+    </div>
+    <div>
+      <%= f.label :rate %>
+      <%= f.collection_radio_buttons :rate, @order_budget.human_attribute_rates, :first, :last %>
+    </div>
+    <div>
+      <%= f.label :rate_value %>
+      <%= f.number_field :rate_value %>
+    </div>
+    <div>
+      <%= f.label :rate_description %>
+      <%= f.text_field :rate_description %>
+    </div>
+    <div>
+      <%= f.label :payment_options %>
+      <%= f.text_field :payment_options %>
+    </div>
+    <%= f.submit 'Aprovar' %>
+  <% end %>
+</div>

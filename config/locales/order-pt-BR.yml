@@ -1,11 +1,14 @@
 pt-BR:
   pending: 'Aguardando Avaliação'
+  approved:
+    one:  'Aprovado'
+    other:  'Aprovados'
   confirmed: 
-    one:  'Pedido Confirmado'
-    other:  'Pedidos Confirmados'
+    one:  'Confirmado'
+    other:  'Confirmados'
   canceled: 
-    one: 'Pedido Cancelado'
-    other: 'Pedidos Cancelados'
+    one: 'Cancelado'
+    other: 'Cancelados'
   activerecord:
     models:
       order: Pedido

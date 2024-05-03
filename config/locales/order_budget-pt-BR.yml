@@ -1,0 +1,16 @@
+pt-BR:
+  none: "Nenhuma"
+  increase: "Acréscimo"
+  discount: "Desconto"
+  activerecord:
+    models:
+      order_budget: Orçamento
+    attributes:
+      order_budget:
+        standard_value: "Valor-Padrão"
+        deadline: "Data de Validade"
+        rate: "Taxa"
+        rate_value: "Valor"
+        rate_description: "Descrição"
+        payment_options: "Meios de Pagamento"
+        order_id: "Pedido"
