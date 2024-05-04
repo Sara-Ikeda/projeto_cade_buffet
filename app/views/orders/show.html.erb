@@ -23,7 +23,25 @@
       <strong>Mais Detalhes:</strong> <%= @order.other_details %>
     </li>
     <li>
-      <strong>Status:</strong> <%= I18n.t(@order.status) %>
+      <strong>Status:</strong> <%= I18n.t(@order.status, count: 1) %>
     </li>
+    <% if @order.confirmed? %>
+      <li>
+        <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>
+      </li>
+      <li>
+        <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %>
+      </li>
+    <% end %>
   </ul>
+</div>
+
+<div>
+  <% if @order.approved? || @order.canceled? %>
+    <h2>Orçamento</h2>
+    <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>
+    <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %>
+    <strong>Data limite para confirmação: </strong><%= @order.order_budget.deadline %>
+    <%= button_to 'Confirmar', confirm_order_path(@order), method: :get, disabled: @order.canceled? %>
+  <% end %>
 </div>

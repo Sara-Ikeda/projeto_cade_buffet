@@ -17,7 +17,7 @@ class OrderBudget < ApplicationRecord
     end
     if self.order.number_of_guests > self.order.event.minimum_of_people
       self.standard_value = (self.order.number_of_guests - self.order.event.minimum_of_people
-                       )*price.add_cost_by_person + price.minimum_cost
+                      )*price.add_cost_by_person + price.minimum_cost
     else
       self.standard_value = price.minimum_cost
     end

@@ -9,6 +9,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
+    flash[:notice] = 'O pedido foi aprovado pelo Buffet. Confirme o orçamento.' if @order.approved?
+    flash[:notice] = 'A data limite para confirmação expirou.' if @order.canceled?
+    
   end
 
   def new
@@ -32,6 +35,13 @@ class OrdersController < ApplicationController
       flash.now[:notice] = 'Não foi possível fazer o pedido.'
       render 'new'
     end
+  end
+
+  def confirm
+    @order = current_customer.orders.find(params[:id])
+    @order.confirmed!
+
+    redirect_to order_path(@order), notice: "Pedido #{@order.code} Confirmado"
   end
 
   private
