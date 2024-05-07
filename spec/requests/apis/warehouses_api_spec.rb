@@ -34,8 +34,8 @@ describe 'Buffet API' do
       expect(response.status).to eq 204
     end
 
-    it 'falha: erro do servidor' do
-      allow(Buffet).to receive(:all).and_raise(ActiveRecord::ConnectionFailed)
+    it 'falha: erro no servidor' do
+      allow(Buffet).to receive(:all).and_raise(ActiveRecord::ActiveRecordError)
 
       get '/api/v1/buffets'
 
