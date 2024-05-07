@@ -24,4 +24,10 @@ Rails.application.routes.draw do
     resources :order_budgets, only: [:new, :create]
     get 'confirm', on: :member
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :buffets, ony: [:index]
+    end
+  end
 end
