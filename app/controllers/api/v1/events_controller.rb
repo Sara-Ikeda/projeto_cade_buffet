@@ -14,7 +14,7 @@ class Api::V1::EventsController < Api::V1::ApiController
     if @query_params[:date].nil? || @query_params[:number_of_guests].nil?
       render status: 400, json: {error: 'Número errado de argumentos.'}
     else
-      if @event.buffet.orders.where(date: @query_params[:date]).exists? && @query_params[:date].to_date > Date.today
+      if @event.buffet.orders.where(date: @query_params[:date]).exists? || @query_params[:date].to_date < Date.today
         render status: 406, json: {error: 'Data indisponível!'}
       else
         standard_value = calculate_standard_value
