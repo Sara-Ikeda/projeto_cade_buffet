@@ -13,7 +13,7 @@
   </div>
 
   <div>
-    <h2><strong><%= I18n.t(:approved) %></strong></h2>
+    <h2><strong><%= I18n.t(:approved, count: 2) %></strong></h2>
     <% if @orders.approved.any? %>
       <% @orders.approved.each do |order| %>
         <p>Pedido <%= link_to order.code, order_show_buffet_path(order) %></p>
