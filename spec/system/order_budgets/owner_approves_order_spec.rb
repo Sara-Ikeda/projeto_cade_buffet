@@ -165,7 +165,9 @@ describe 'Dono de Buffet aprova pedido' do
                 description: 'Doces e Salgados para sua festa', payment_types: 'Dinheiro e PIX')
 
     login_as(other_owner, scope: :owner)
+    visit new_order_order_budget_path(order)
 
-    expect { visit new_order_order_budget_path(order) }.to raise_error(ActiveRecord::RecordNotFound)
+    expect(current_path).to eq buffet_path(other_buffet)
+    expect(page).to have_content 'Acesso negado!'
   end
 end

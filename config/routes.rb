@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'order_show', on: :member
   end
 
-  resources :events, only: [:new, :create] do
+  resources :events, only: [:new, :create, :edit, :update] do
     resources :prices, only: [:new, :create]
     resources :orders, only: [:new, :create]
   end

@@ -146,7 +146,9 @@ describe 'Cliente confirma pedido' do
                       email: 'john@email.com', password: '246810')
 
     login_as(other_customer, scope: :customer)
+    visit confirm_order_path(order)
 
-    expect{ visit confirm_order_path(order) }.to raise_error(ActiveRecord::RecordNotFound)
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Acesso negado!'
   end
 end

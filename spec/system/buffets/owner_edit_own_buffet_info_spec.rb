@@ -117,6 +117,6 @@ describe 'Dono edita as informações do Buffet' do
     visit edit_buffet_path(buffet.id)
 
     expect(current_path).to_not eq edit_buffet_path(buffet.id)
-    expect(page).to have_content 'Você não pode editar esse buffet!'
+    expect(page).to have_content 'Acesso negado!'
   end
 end

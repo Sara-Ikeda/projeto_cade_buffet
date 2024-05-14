@@ -17,6 +17,9 @@
     <dd>Serviço de Estacionamento (Valet): <%= I18n.t(event.valet) %></dd>
     <dd>Localização: <%= I18n.t(event.locality) %></dd>
   </dl>
+  <% if owner_signed_in? && event.buffet.owner == current_owner %>
+    <%= button_to 'Editar Evento', edit_event_path(event), method: :get %>
+  <% end %>
 </div>
 
 <div>

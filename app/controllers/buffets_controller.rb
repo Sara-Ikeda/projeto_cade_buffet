@@ -17,7 +17,7 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.find(params[:id])
     @address = @buffet.address
     if @buffet.owner != current_owner
-      redirect_to root_path, notice: 'Você não pode editar esse buffet!'
+      redirect_to root_path, notice: 'Acesso negado!'
     end
   end
 
@@ -25,7 +25,7 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.find(params[:id])
     @address = @buffet.address
     if @buffet.owner != current_owner
-      return redirect_to root_path, notice: 'Você não pode editar esse buffet!'
+      return redirect_to root_path, notice: 'Acesso negado!'
     end
 
     buffet_params = params.require(:buffet).permit(

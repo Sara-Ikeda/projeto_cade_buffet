@@ -1,8 +1,7 @@
-<h1>Adicionar novo Tipo de Evento</h1>
+<h1>Editar Evento: <%= @event.name %></h1>
 
-
-  <% if @event.errors.any? %>
-    <strong>Não foi possível adicionar:</strong>
+<% if @event.errors.any? %>
+    <strong>Falha ao editar:</strong>
     <ul>
       <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %>!</li>

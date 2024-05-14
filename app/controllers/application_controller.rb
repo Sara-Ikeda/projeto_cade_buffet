@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_owner!
   before_action :buffet_is_required
   before_action :configure_permitted_parameters, if: :devise_controller?
+  rescue_from ActiveRecord::RecordNotFound, with: :access_denied
 
   protected
 
@@ -20,5 +21,9 @@ class ApplicationController < ActionController::Base
     if customer_signed_in?
       return redirect_to root_path, notice: 'Acesso negado!'
     end
+  end
+
+  def access_denied
+    return redirect_to root_path, notice: 'Acesso negado!'
   end
 end
