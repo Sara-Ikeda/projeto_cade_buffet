@@ -48,7 +48,7 @@ describe 'Events API' do
       Price.create!(minimum_cost: 15000, add_cost_by_person: 250,
                 add_cost_by_hour: 500 ,weekday: 'Fim de Semana', event: event)
 
-      customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+      customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                   email: 'jane@email.com', password: '159357')
        order = Order.create!(customer: customer, buffet: buffet, event: event, date: 1.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')

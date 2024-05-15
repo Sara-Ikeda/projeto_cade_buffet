@@ -58,7 +58,7 @@ describe 'Usuário adiciona preço a um evento' do
   end
 
   it 'e está autenticado como Cliente' do
-    customer = Customer.create!(name: 'Sara', cpf: 68597496358, email: 'sara@email.com', password: 'password')
+    customer = Customer.create!(name: 'Sara', cpf: CPF.generate, email: 'sara@email.com', password: 'password')
 
     post(customer_session_path, params: {customer: { email: 'sara@email.com', password: 'password' }})
     post(event_prices_path(1), params: { prices: {minimum_cost: 6852, event_id: 54}})

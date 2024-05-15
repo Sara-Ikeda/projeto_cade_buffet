@@ -33,7 +33,7 @@ describe 'Usuário faz pedido para um buffet' do
                   'A festa do seu jeito.', minimum_of_people: 50, maximum_of_people: 150,
                   duration: 120, menu: 'Bolo. Jantar.',
                   alcoholic_drink: 1, ornamentation: 1, valet: 0, locality: 0, buffet: buffet)
-    customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+    customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                 email: 'sara@contato.com', password: '159357')
 
     login_as(customer, scope: :customer)
@@ -62,7 +62,7 @@ describe 'Usuário faz pedido para um buffet' do
                   'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
                   duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                   alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 1, buffet: buffet)
-    customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+    customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                 email: 'sara@contato.com', password: '159357')
 
     login_as(customer, scope: :customer)

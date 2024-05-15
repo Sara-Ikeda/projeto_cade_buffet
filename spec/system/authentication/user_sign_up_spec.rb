@@ -59,7 +59,7 @@ describe 'Usuário cria conta' do
       end
       click_on 'Criar conta'
       fill_in 'Nome', with: 'Sara'
-      fill_in 'CPF', with: '68495236985'
+      fill_in 'CPF', with: CPF.generate
       fill_in 'E-mail', with: 'sara@email.com'
       fill_in 'Senha', with: 'password'
       fill_in 'Confirme sua senha', with: 'password'

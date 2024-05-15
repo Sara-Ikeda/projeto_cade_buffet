@@ -51,7 +51,7 @@ describe 'Usuário se autentica' do
     end
     
     it 'com sucesso' do
-      Customer.create!(name: 'Sara', cpf: 68597496358, email: 'sara@email.com', password: 'password')
+      Customer.create!(name: 'Sara', cpf: CPF.generate, email: 'sara@email.com', password: 'password')
 
       visit root_path
       within('div#customer_sign_in') do
@@ -68,7 +68,7 @@ describe 'Usuário se autentica' do
     end
 
     it 'e faz log out' do
-      customer = Customer.create!(name: 'Sara', cpf: 68597496358, email: 'sara@email.com', password: 'password')
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate, email: 'sara@email.com', password: 'password')
 
       login_as(customer, scope: :customer)
       visit root_path

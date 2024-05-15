@@ -18,7 +18,7 @@ describe 'Cliente confirma pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -56,7 +56,7 @@ describe 'Cliente confirma pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -96,7 +96,7 @@ describe 'Cliente confirma pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -134,7 +134,7 @@ describe 'Cliente confirma pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -142,7 +142,7 @@ describe 'Cliente confirma pedido' do
                     payment_options: 'Cartão Débito/Crédito (12x)')
     order.approved!
 
-    other_customer = Customer.create!(name: 'John', cpf: 23959741596,
+    other_customer = Customer.create!(name: 'John', cpf: CPF.generate,
                       email: 'john@email.com', password: '246810')
 
     login_as(other_customer, scope: :customer)

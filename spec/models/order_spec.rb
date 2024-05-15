@@ -68,7 +68,7 @@ RSpec.describe Order, type: :model do
                 'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
                 duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                 alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                   email: 'sara@contato.com', password: '159357')
       order = Order.new(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -92,7 +92,7 @@ RSpec.describe Order, type: :model do
                 'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
                 duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                 alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                   email: 'sara@contato.com', password: '159357')
       allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('A1B2C3D4')
       order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
@@ -118,7 +118,7 @@ RSpec.describe Order, type: :model do
                 'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
                 duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                 alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                   email: 'sara@contato.com', password: '159357')
       order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')

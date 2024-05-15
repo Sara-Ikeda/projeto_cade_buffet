@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário se autentica como cliente' do
   context 'e tenta acessar página' do
     it "para criar novo buffet" do
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                    email: 'sara@email.com', password: '159357')
 
       login_as(customer, scope: :customer)
@@ -15,7 +15,7 @@ describe 'Usuário se autentica como cliente' do
     end
 
     it "para criar evento" do
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                    email: 'sara@email.com', password: '159357')
 
       login_as(customer, scope: :customer)
@@ -39,7 +39,7 @@ describe 'Usuário se autentica como cliente' do
         duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
         alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-      customer = Customer.create!(name: 'Sara', cpf: 95863254789,
+      customer = Customer.create!(name: 'Sara', cpf: CPF.generate,
                    email: 'sara@cliente.com', password: '159357')
 
       login_as(customer, scope: :customer)

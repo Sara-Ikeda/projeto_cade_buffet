@@ -14,7 +14,7 @@ describe 'Dono de Buffet aprova pedido' do
                   duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                   alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -37,7 +37,7 @@ describe 'Dono de Buffet aprova pedido' do
                   duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
                   alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -67,7 +67,7 @@ describe 'Dono de Buffet aprova pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -109,7 +109,7 @@ describe 'Dono de Buffet aprova pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
@@ -151,7 +151,7 @@ describe 'Dono de Buffet aprova pedido' do
     Price.create!(minimum_cost: 4500, add_cost_by_person: 200,
                   add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 
-    customer = Customer.create!(name: 'Jane', cpf: 95863254789,
+    customer = Customer.create!(name: 'Jane', cpf: CPF.generate,
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')

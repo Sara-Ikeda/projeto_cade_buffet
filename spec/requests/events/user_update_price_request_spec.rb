@@ -33,7 +33,7 @@ describe 'Usuário edita preço de um buffet' do
   end
 
   it 'mas está autenticado como Cliente' do
-    customer = Customer.create!(name: 'Sara', cpf: 68597496358, email: 'sara@email.com', password: 'password')
+    customer = Customer.create!(name: 'Sara', cpf: CPF.generate, email: 'sara@email.com', password: 'password')
 
     post(customer_session_path, params: {customer: { email: 'sara@email.com', password: 'password' }})
     patch(event_price_path(1,1), params: { price: {weekday: 'Dias Úteis'}})
