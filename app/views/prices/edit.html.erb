@@ -1,11 +1,10 @@
-<h1>Adicionar Preço-Base</h1>
-
+<h1>Editar Preço-Base do Evento: <%= @event.name %></h1>
 
 <% if @price.errors.any? %>
-  <p>Verifique os erros:</p>
+  <p>Falha ao editar:</p>
   <ul>
     <% @price.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li><%= msg %>!</li>
     <% end %>
   </ul>
 <% end %>

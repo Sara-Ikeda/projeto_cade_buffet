@@ -10,9 +10,9 @@ describe 'Preços por tipo de evento' do
               email: 'noivos@contato.com', address: address, owner: owner,
               description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
     event = Event.create!(name: 'Festa de Casamento', event_description: 
-            'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
-            duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
-            alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
+              'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+              duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+              alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
     Price.create!(minimum_cost: 10000, add_cost_by_person: 200,
             add_cost_by_hour: 300 ,weekday: 'Dias Úteis', event: event)
     Price.create!(minimum_cost: 20000, add_cost_by_person: 200,
@@ -36,9 +36,9 @@ describe 'Preços por tipo de evento' do
                 email: 'noivos@contato.com', address: address, owner: owner,
                 description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
       event = Event.create!(name: 'Festa de Casamento', event_description: 
-              'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
-              duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
-              alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
+                'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+                duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+                alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
       Price.create!(minimum_cost: 10000, add_cost_by_person: 200,
               add_cost_by_hour: 300 ,weekday: 'Dias Úteis', event: event)
 
@@ -59,9 +59,9 @@ describe 'Preços por tipo de evento' do
                 email: 'noivos@contato.com', address: address, owner: owner,
                 description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
       event = Event.create!(name: 'Festa de Casamento', event_description: 
-              'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
-              duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
-              alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
+                'Todos os serviços para o seu casamento perfeito.', minimum_of_people: 100, maximum_of_people: 250,
+                duration: 180, menu: 'Bolo, bem-casadinhos, salgados. Estrogonofe, Carne ao molho madeira.',
+                alcoholic_drink: 1, ornamentation: 1, valet: 1, locality: 0, buffet: buffet)
       Price.create!(minimum_cost: 10000, add_cost_by_person: 200,
               add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event)
 

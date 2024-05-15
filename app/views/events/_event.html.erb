@@ -22,17 +22,22 @@
   <% end %>
 </div>
 
-<div>
+<div id="prices">
   <% if event.prices.empty? %>
     <p>Ainda não foram cadastrados preços para esse evento!</p>
   <% else %>
     <% event.prices.each do |price| %>
-      <strong>Para <%= price.weekday %></strong>
-      <ul>
-        <li>Valor mínimo: R$ <%= price.minimum_cost %>,00</li>
-        <li>Valor adicional por pessoa: R$ <%= price.add_cost_by_person %>,00</li>
-        <li>Valor adicional por hora extra: R$ <%= price.add_cost_by_hour %>,00</li>
-      </ul>
+      <div>
+        <strong>Para <%= price.weekday %></strong>
+        <ul>
+          <li>Valor mínimo: R$ <%= price.minimum_cost %>,00</li>
+          <li>Valor adicional por pessoa: R$ <%= price.add_cost_by_person %>,00</li>
+          <li>Valor adicional por hora extra: R$ <%= price.add_cost_by_hour %>,00</li>
+        </ul>
+        <% if owner_signed_in? && event.buffet.owner == current_owner %>
+          <%= button_to 'Editar Preço-Base', edit_event_price_path(event.id, price.id), method: :get %>
+          <% end %>
+      </div>
     <% end %>
   <% end %>
   <% if owner_signed_in? && event.buffet.owner == current_owner && event.available_days? %>

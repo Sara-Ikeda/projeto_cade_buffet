@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:new, :create, :edit, :update] do
-    resources :prices, only: [:new, :create]
+    resources :prices, only: [:new, :create, :edit, :update]
     resources :orders, only: [:new, :create]
   end
 

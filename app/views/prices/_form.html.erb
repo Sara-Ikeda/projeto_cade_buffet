@@ -1,0 +1,24 @@
+<%= form_with model: [@event, @price] do |f| %>
+  <div>
+    <%= f.label :minimum_cost %>
+    <%= f.number_field :minimum_cost %>
+  </div>
+  <div>
+    <%= f.label :add_cost_by_person %>
+    <%= f.number_field :add_cost_by_person %>
+  </div>
+  <div>
+    <%= f.label :add_cost_by_hour %>
+    <%= f.number_field :add_cost_by_hour %>
+  </div>
+  <div>
+    <%= f.label :weekday %>
+    <% if @price.id.nil? %>
+      <%= f.select :weekday, @event.available_days? %>
+    <% else %>
+      <%= f.select :weekday, @available_days_for_edit %>
+    <% end %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>
