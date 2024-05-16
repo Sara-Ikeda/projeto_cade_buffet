@@ -31,7 +31,7 @@ Price.create!(minimum_cost: 2000, add_cost_by_person: 80,
 Price.create!(minimum_cost: 4000, add_cost_by_person: 100,
           add_cost_by_hour: 300 ,weekday: 'Fim de Semana', event: event_b)
 
-second_owner = Owner.create!(email: 'buffet2@gmail.com', password: 'password')
+second_owner = Owner.create!(email: 'buffet2@email.com', password: 'password')
 second_address = Address.create!(street: 'Avenida 9 de Julho', number: 150, district: 'Jardim Paulista',
                   city: 'São Paulo', state: 'SP', zip: '01153000')
 second_buffet = Buffet.create!(trade_name: 'Doces e Salgados SP', company_name: 'Doces e Salgados LA',
@@ -54,3 +54,23 @@ Buffet.create!(trade_name: 'Doces do RJ', company_name: 'Doces LTDA',
               registration_number: '85967518000168', telephone: '55986475932',
               email: 'contato@doces.com', address: third_address, owner: third_owner,
               description: 'Sua festa doce', payment_types: 'Débito/PIX')
+
+customer = Customer.create!(name: 'Cliente 1', cpf: CPF.generate,
+              email: 'client1@email.com', password: 'password')
+order_a = Order.create!(customer: customer, buffet: buffet, event: event_a, date: 3.months.from_now,
+              number_of_guests: 200, other_details: 'Casamento de A e B')
+order_b = Order.create!(customer: customer, buffet: second_buffet, event: second_event_a, date: 5.months.from_now,
+              number_of_guests: 200, other_details: 'Aniversário de 100 da Vovó')
+order_a.confirmed!
+
+second_customer = Customer.create!(name: 'Cliente 2', cpf: CPF.generate,
+              email: 'client2@email.com', password: 'password')
+second_order_b = Order.create!(customer: second_customer, buffet: buffet, event: event_b, date: 1.months.from_now,
+              number_of_guests: 50, other_details: '50 anos de casamento de X e Z')
+second_order_b.approved!
+
+third_customer = Customer.create!(name: 'Cliente 3', cpf: CPF.generate,
+              email: 'client3@email.com', password: 'password')
+third_order_a = Order.create!(customer: third_customer, buffet: second_buffet, event: second_event_a, date: 1.week.from_now,
+              number_of_guests: 150, other_details: 'Festa de 15 anos da C')
+third_order_a.canceled!
