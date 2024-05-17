@@ -75,14 +75,14 @@ Sendo um ambiente de desenvolvimento e teste, foi utilizado _seeds_ para adicion
 
 ### Buffets:
 |Dono|Nome Fantasia|Cidade/UF|
-|-------------------|----------|----------|
+|----|-------------|---------|
 | buffet1| Gourmet dos Noivos |São Paulo/SP|
 | buffet2 | Doces e Salgados SP |São Paulo/SP|
 | buffet3 | Doces do RJ |Niterói/RJ|
 
 ### Tipos de Evento:
-|Buffet|Nome||
-|-------------------|----------|----------|
+|Buffet|Nome|
+|------|----|
 |Gourmet dos Noivos|Festa de Casamento|
 |Gourmet dos Noivos |Festa de Bodas|
 |Doces e Salgados SP|Festa de Aniversário|
