@@ -5,7 +5,7 @@
     <h2><strong><%= I18n.t(:pending) %></strong></h2>
     <% if @orders.pending.any? %>
       <% @orders.pending.each do |order| %>
-        <p>Pedido <%= link_to order.code, order_show_buffet_path(order) %></p>
+        <p>Pedido <%= link_to order.code, order_path(order) %></p>
       <% end %>
     <% else %>
       <p>Não há pedidos aguardando avaliação.</p>
@@ -16,7 +16,7 @@
     <h2><strong><%= I18n.t(:approved, count: 2) %></strong></h2>
     <% if @orders.approved.any? %>
       <% @orders.approved.each do |order| %>
-        <p>Pedido <%= link_to order.code, order_show_buffet_path(order) %></p>
+        <p>Pedido <%= link_to order.code, order_path(order) %></p>
       <% end %>
     <% else %>
       <p>Não há pedidos aguardando confirmação.</p>
@@ -27,7 +27,7 @@
     <h2><strong><%= I18n.t(:confirmed, count: 2) %></strong></h2>
     <% if @orders.confirmed.any? %>
       <% @orders.confirmed.each do |order| %>
-        <p>Pedido <%= order.code %></p>
+        <p>Pedido <%= link_to order.code, order_path(order) %></p>
       <% end %>
     <% end %>
   </div>
@@ -36,7 +36,7 @@
     <h2><strong><%= I18n.t(:canceled, count: 2) %></strong></h2>
     <% if @orders.canceled.any? %>
       <% @orders.canceled.each do |order| %>
-        <p>Pedido <%= order.code %></p>
+        <p>Pedido <%= link_to order.code, order_path(order) %></p>
       <% end %>
     <% end %>
   </div>

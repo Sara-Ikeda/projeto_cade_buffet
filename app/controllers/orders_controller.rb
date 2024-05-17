@@ -1,17 +1,24 @@
 class OrdersController < ApplicationController
   skip_before_action :authenticate_owner!
-  before_action :check_user
-  before_action :authenticate_customer!
+  before_action :check_user, except: [:index, :show]
+  before_action :authenticate_customer!, except: [:index, :show]
   
   def index
-    @orders = current_customer.orders
+    @orders = current_owner.buffet.orders if owner_signed_in?
+    @orders = current_customer.orders if customer_signed_in?
   end
 
   def show
-    @order = current_customer.orders.find(params[:id])
-    flash[:notice] = 'O pedido foi aprovado pelo Buffet. Confirme o orçamento.' if @order.approved?
-    flash[:notice] = 'A data limite para confirmação expirou.' if @order.canceled?
-    
+    if owner_signed_in?
+      @order = current_owner.buffet.orders.find(params[:id])
+      
+      @conflict_dates_orders = current_owner.buffet.orders.where(
+                              "date = ? AND code != ?", @order.date, @order.code)
+    elsif customer_signed_in?
+      @order = current_customer.orders.find(params[:id])
+      flash.now[:notice] = 'O pedido foi aprovado pelo Buffet. Confirme o orçamento.' if @order.approved?
+      flash.now[:notice] = 'A data limite para confirmação expirou.' if @order.canceled? && @order.order_budget.present?
+    end
   end
 
   def new

@@ -61,12 +61,17 @@ order_a = Order.create!(customer: customer, buffet: buffet, event: event_a, date
               number_of_guests: 200, other_details: 'Casamento de A e B')
 order_b = Order.create!(customer: customer, buffet: second_buffet, event: second_event_a, date: 5.months.from_now,
               number_of_guests: 200, other_details: 'Aniversário de 100 da Vovó')
+order_a_budget = OrderBudget.create!(order: order_a, deadline: 2.weeks.from_now,
+                    payment_options: 'Cartão Débito/Crédito (12x)')
+order_a.approved!
 order_a.confirmed!
 
 second_customer = Customer.create!(name: 'Cliente 2', cpf: CPF.generate,
               email: 'client2@email.com', password: 'password')
 second_order_b = Order.create!(customer: second_customer, buffet: buffet, event: event_b, date: 1.months.from_now,
               number_of_guests: 50, other_details: '50 anos de casamento de X e Z')
+second_order_b_budget = OrderBudget.create!(order: second_order_b, deadline: 5.days.from_now,
+                    payment_options: 'Dinheiro e PIX')
 second_order_b.approved!
 
 third_customer = Customer.create!(name: 'Cliente 3', cpf: CPF.generate,

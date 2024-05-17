@@ -34,7 +34,7 @@ class BuffetsController < ApplicationController
     address_params = params.require(:address).permit(
       :street, :number, :district, :city, :state, :zip)
     
-    @address.update(address_params)               # => VERIFICAR!!!
+    @address.update(address_params)
     if @buffet.update(buffet_params)
       redirect_to buffet_path(@buffet), notice: 'Buffet atualizado com sucesso!'
     else
@@ -72,16 +72,5 @@ class BuffetsController < ApplicationController
                       Buffet.where(address: { city: @query})).or(
                       Buffet.where("events.name LIKE ?", "%#{@query}%")).order(trade_name: :asc)
     @count = @search_buffets.count
-  end
-
-  def order_index
-    @orders = current_owner.buffet.orders
-  end
-
-  def order_show
-    @order = current_owner.buffet.orders.find(params[:id])
-    
-    @conflict_dates_orders = current_owner.buffet.orders.where(
-                            "date = ? AND code != ?", @order.date, @order.code)
   end
 end

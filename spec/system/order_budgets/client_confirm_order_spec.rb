@@ -35,7 +35,7 @@ describe 'Cliente confirma pedido' do
     expect(page).to have_content 'Status: Aprovado'
     expect(page).to have_content "Valor-Padrão: #{order_budget.standard_value}"
     expect(page).to have_content 'Meios de Pagamento: Cartão Débito/Crédito (12x)'
-    expect(page).to have_content "Data limite para confirmação: #{order_budget.deadline}"
+    expect(page).to have_content "Data limite para confirmação: #{I18n.localize(order_budget.deadline)}"
     expect(page).to have_button "Confirmar"
   end
 
@@ -75,7 +75,7 @@ describe 'Cliente confirma pedido' do
     expect(page).to have_content "Status: Confirmado"
     expect(page).to have_content "Valor-Padrão: #{order_budget.standard_value}"
     expect(page).to have_content 'Meios de Pagamento: Cartão Débito/Crédito (12x)'
-    expect(page).to_not have_content "Data limite para confirmação: #{order_budget.deadline}"
+    expect(page).to_not have_content "Data limite para confirmação: #{I18n.localize(order_budget.deadline)}"
     expect(page).to_not have_button "Confirmar"
   end
 
@@ -100,10 +100,11 @@ describe 'Cliente confirma pedido' do
                 email: 'jane@email.com', password: '159357')
     order = Order.create!(customer: customer, buffet: buffet, event: event, date: 3.months.from_now,
                 number_of_guests: 200, other_details: 'Casamento de Jane e John')
-    order_budget = OrderBudget.create!(order: order, deadline: Date.today-1.day,
+    order_budget = OrderBudget.create!(order: order, deadline: 1.months.from_now,
                     payment_options: 'Cartão Débito/Crédito (12x)')
     order.approved!
 
+    travel 2.month
     login_as(customer, scope: :customer)
     visit root_path
     click_on 'Meus Pedidos'
@@ -113,7 +114,7 @@ describe 'Cliente confirma pedido' do
     expect(page).to have_content "Status: Cancelado"
     expect(page).to have_content "Valor-Padrão: #{order_budget.standard_value}"
     expect(page).to have_content 'Meios de Pagamento: Cartão Débito/Crédito (12x)'
-    expect(page).to have_content "Data limite para confirmação: #{order_budget.deadline}"
+    expect(page).to have_content "Data limite para confirmação: #{I18n.localize(order_budget.deadline)}"
     expect(page).to_not have_button "Confirmar"
   end
 

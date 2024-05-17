@@ -1,47 +1,54 @@
-<div id="order_info">
-  <h1>Pedido <%= @order.code %></h1>
+<% if owner_signed_in? %>
+  <%= render 'owner_show' %>
 
-  <ul>
-    <li>
-      <strong>Buffet Contratado:</strong> <%= @order.buffet.trade_name %>
-    </li>
-    <li>
-      <strong>Para o Tipo de Evento:</strong> <%= @order.event.name %>
-    </li>
-    <li>
-      <strong>Número Estimado de Convidados:</strong> <%= @order.number_of_guests %>
-    </li>
-    <li>
-      <strong>Data Desejada:</strong> <%= I18n.localize(@order.date) %>
-    </li>
-    <% if @order.address.present? %>
-      <li>
-        <strong>Endereço Desejado:</strong> <%= @order.address %>
-      </li>
-    <% end %>
-    <li>
-      <strong>Mais Detalhes:</strong> <%= @order.other_details %>
-    </li>
-    <li>
-      <strong>Status:</strong> <%= I18n.t(@order.status, count: 1) %>
-    </li>
-    <% if @order.confirmed? %>
-      <li>
-        <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>
-      </li>
-      <li>
-        <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<% elsif customer_signed_in? %>
 
-<div>
-  <% if @order.approved? || @order.canceled? %>
-    <h2>Orçamento</h2>
-    <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>
-    <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %>
-    <strong>Data limite para confirmação: </strong><%= @order.order_budget.deadline %>
-    <%= button_to 'Confirmar', confirm_order_path(@order), method: :get, disabled: @order.canceled? %>
-  <% end %>
-</div>
+  <div id="order_info_for_customer">
+    <h1>Pedido <%= @order.code %></h1>
+
+    <ul>
+      <li>
+        <strong>Buffet Contratado:</strong> <%= @order.buffet.trade_name %>
+      </li>
+      <li>
+        <strong>Para o Tipo de Evento:</strong> <%= @order.event.name %>
+      </li>
+      <li>
+        <strong>Número Estimado de Convidados:</strong> <%= @order.number_of_guests %>
+      </li>
+      <li>
+        <strong>Data Desejada:</strong> <%= I18n.localize(@order.date) %>
+      </li>
+      <% if @order.address.present? %>
+        <li>
+          <strong>Endereço Desejado:</strong> <%= @order.address %>
+        </li>
+      <% end %>
+      <li>
+        <strong>Mais Detalhes:</strong> <%= @order.other_details %>
+      </li>
+      <li>
+        <strong>Status:</strong> <%= I18n.t(@order.status, count: 1) %>
+      </li>
+      <% if @order.confirmed? %>
+        <li>
+          <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>,00
+        </li>
+        <li>
+          <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <% if @order.approved? || (@order.canceled? && @order.order_budget.present?) %>
+      <h2>Orçamento</h2>
+      <strong>Valor-Padrão: </strong><%= @order.order_budget.standard_value %>,00<br>
+      <strong>Meios de Pagamento: </strong><%= @order.order_budget.payment_options %><br>
+      <strong>Data limite para confirmação: </strong><%= I18n.localize(@order.order_budget.deadline) %><br>
+      <%= button_to 'Confirmar', confirm_order_path(@order), method: :get, disabled: @order.canceled? %>
+    <% end %>
+  </div>
+
+<% end %>

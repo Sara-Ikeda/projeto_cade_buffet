@@ -28,7 +28,7 @@ Projeto Crash Course do TreinaDev da Campus Code: desenvolver uma aplicação we
 
 ✅ Campo para buscar Buffet: pelo nome fantasia, pela cidade ou pelos tipos de eventos.
 
-✅ Criar conta como Donos de Buffet. Estes, podendo cadastrar seu Buffet, tipos e eventos e preços-base.
+✅ Criar conta como Donos de Buffet. Estes, podendo cadastrar seu Buffet, tipos de eventos e preços-base.
 
 ✅ Criar conta como Clientes. Estes, podendo fazer um pedido para um Buffet.
 
@@ -86,7 +86,7 @@ Sendo um ambiente de desenvolvimento e teste, foi utilizado _seeds_ para adicion
 |Gourmet dos Noivos|Festa de Casamento|
 |Gourmet dos Noivos |Festa de Bodas|
 |Doces e Salgados SP|Festa de Aniversário|
-|Doces do RJ|- _Nenhum_ -|
+|Doces do RJ|- _Não Cadastrado_ -|
 
 ### Clientes:
 |Nome|Email|Senha|
@@ -104,7 +104,7 @@ Sendo um ambiente de desenvolvimento e teste, foi utilizado _seeds_ para adicion
 |Cliente 3|Doces e Salgados SP|Festa de Aniversário|Cancelado|
 
 
-Rode o comando abaixo no terminal para derrubar o banco e dados, criá-lo e popular com os dados dos seeds:
+Rode o comando abaixo no terminal para derrubar o banco de dados, criá-lo e popular com os dados dos seeds:
 ```
 rails db:reset
 ```
@@ -118,11 +118,13 @@ rails db:reset
 ### Buffets
 ☑️ Devem ser criados após o cadastro da conta de Dono, não sendo possível acessar outra página.
 
-☑️ São listados na página inicial da aplicação para visitantes e clientes, apenas com nome fantasias e cidade/uf.
+☑️ São listados na página inicial da aplicação para visitantes e clientes, apenas com nome fantasia e cidade/UF.
 
 ☑️ Mais detalhes são acessados pelo nome fantasia.
 
-☑️ Podem ser editados apenas por seus donos, mas não podem ser excluídos.
+☑️ Podem ser editados apenas por seus donos.
+
+☑️ Não podem ser excluídos.
 
 
 ### Tipos de Evento
@@ -130,22 +132,26 @@ rails db:reset
 
 ☑️ São listados na página de detalhes de seus respectivos Buffets. São mostrados todos os detalhes.
 
-☑️ Podem ser editados apenas por seus donos, mas não podem ser excluídos.
+☑️ Podem ser editados apenas por seus donos.
+
+☑️ Não podem ser excluídos.
 
 ### Preços-base dos Eventos
 ☑️ Podem ser criados até dois pelo dono do Buffet na página do mesmo, logo à baixo de seu respectivo tipo de evento.
 
 ☑️ São listados na página de detalhes dos Buffets à baixo de seus respectivos tipos de evento. São mostrados todos os detalhes.
 
-☑️ Podem ser editados apenas por seus donos, mas não podem ser excluídos.
+☑️ Podem ser editados apenas por seus donos.
+
+☑️ Não podem ser excluídos.
 
 ### Clientes
-☑️ Pode se cadastrar na página de _Criar Conta como Cliente_ a partir de um formulário fornecendo nome, cpf, email e senha.
+☑️ Pode se cadastrar na página de _Criar Conta como Cliente_ a partir de um formulário fornecendo nome, CPF, email e senha.
 
 ### Pedidos
 ☑️ Podem ser criados pelos Clientes na páginas de detalhes dos Buffets, logo após os preços-base.
 
-☑️ São listados na página Pedidos apenas com seus códigos. Donos de Buffets vêem todos os pedidos feitos para seu Buffet. E Clientes vêem todos os seus pedidos feitos.
+☑️ São listados na página Pedidos apenas com seus códigos. Donos de Buffets veem todos os pedidos feitos para seu Buffet. E Clientes veem todos os seus pedidos feitos.
 
 ☑️ Mais detalhes são acessados pelo código único.
 

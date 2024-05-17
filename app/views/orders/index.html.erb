@@ -1,17 +1,21 @@
-<div id="customer_orders"></div>
-  <h1>Meus Pedidos</h1>
+<% if owner_signed_in? %>
+  <%= render 'owner_index' %>
 
-  <% if @orders.empty? %>
-    <p>Não há pedidos cadastrados.</p>
-  <% else %>
-    <% @orders.each do |order| %>
-      <div>
-        <dl>
-          <dt>Pedido <%= link_to order.code, order_path(order) %></dt>
-          <dd>Data Desejada: <%= I18n.localize(order.date) %></dd>
-        </dl>
-      </div>
+<% elsif customer_signed_in? %>
+  <div id="customer_orders"></div>
+    <h1>Meus Pedidos</h1>
+
+    <% if @orders.empty? %>
+      <p>Não há pedidos cadastrados.</p>
+    <% else %>
+      <dl>
+        <% @orders.each do |order| %>
+          <div>
+              <dt>Pedido <%= link_to order.code, order_path(order) %></dt>
+              <dd>Data Desejada: <%= I18n.localize(order.date) %></dd>
+          </div>
+        <% end %>
+      </dl>
     <% end %>
-  <% end %>
-
-</div>
+  </div>
+<% end %>

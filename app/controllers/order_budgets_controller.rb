@@ -13,7 +13,7 @@ class OrderBudgetsController < ApplicationController
 
     if @order_budget.save
       @order.approved!
-      redirect_to order_index_buffets_path, notice: 'Pedido Aprovado. Esperando Confirmação do Cliente.'
+      redirect_to orders_path, notice: 'Pedido Aprovado. Esperando Confirmação do Cliente.'
     else
       flash.now[:notice] = 'Não foi possível aprovar o pedido.'
       render 'new'

@@ -1,14 +1,12 @@
-<div id="order_pending_info">
+<div id="order_info_for_owner">
   <h1>Pedido <%= @order.code %></h1>
 
   <div>
-    <% if @conflict_dates_orders %>
+    <% if @conflict_dates_orders.present? && !@order.canceled? %>
         <strong>Data Desejada em conflito com:</strong>
-        <ul>
           <% @conflict_dates_orders.each do |order| %>
-            <li><%= order.code %></li>
+            <%= order.code %> | 
           <% end %>
-        </ul>
     <% end %>
   </div>
 
@@ -32,10 +30,12 @@
         <strong>Mais Detalhes:</strong> <%= @order.other_details %>
       </li>
       <li>
-        <strong>Status:</strong> <%= I18n.t(@order.status) %>
+        <strong>Status:</strong> <%= I18n.t(@order.status, count: 1) %>
       </li>
     </ul>
-
-    <%= button_to 'Aprovar Pedido', new_order_order_budget_path(@order), method: :get %>
+    
+    <% if @order.pending? %>
+      <%= button_to 'Aprovar Pedido', new_order_order_budget_path(@order), method: :get %>
+    <% end %>
   </div>
 </div>

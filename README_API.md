@@ -37,7 +37,7 @@ _Exemplo de JSON da resposta 200:_
 
 * `id` : O _ID_ do buffet para futura consulta.
 * `trade_name` : Nome Fantasia (público) do buffet.
-* `contact` : Telefone e E-mail de contato.
+* `contact` : Telefone e e-mail de contato.
 
 ### 2. Filtro de busca
 
@@ -171,11 +171,11 @@ _Exemplo de JSON da resposta 200 para `GET /api/v1/buffets/1/events`:_
 * `name` : Nome.
 * `event_description` : Descrição do evento.
 * `minimum_of_people` : Quantidade mínima de convidados.
-* `maximum_of_people` : Quantidade máxima convidados.
+* `maximum_of_people` : Quantidade máxima de convidados.
 * `duration` : Duração padrão do evento (em minutos).
 * `menu` : Cardápio.
 
-  Serviços extras podendo ser fornecidos (_provided_) ou não (_unprovided_):
+  Serviços extras podem ser fornecidos (_provided_) ou não (_unprovided_):
 * `alcoholic_drink` : Bebidas alcoólicas.
 * `ornamentation` : Decoração.
 * `valet` : Atendente de estacionamento.
@@ -201,7 +201,7 @@ Além de informar o ID do tipo de evento (e o _ID_ de seu Buffet correspondente)
 | 204  | não há buffet ou tipos de eventos cadastrados        |
 | 400  | _date_ ou _number_of_guests_ em branco               |
 | 404  | ID fornecido não é de um buffet ou evento cadastrado |
-| 406  | Data indiponível                                     |
+| 406  | data indiponível                                     |
 | 500  | erro do servidor                                     |
 
 

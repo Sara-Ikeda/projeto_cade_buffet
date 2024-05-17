@@ -2,7 +2,7 @@
 
 
 <% if @price.errors.any? %>
-  <p>Verifique os erros:</p>
+  <strong>Verifique os erros:</strong>
   <ul>
     <% @price.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

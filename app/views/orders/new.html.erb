@@ -2,10 +2,10 @@
 
 <div>
   <% if @order.errors.any? %>
-    <p>Verifique os erros:</p>
+    <strong>Verifique os erros:</strong>
     <ul>
       <% @order.errors.full_messages.each do |msg| %>
-        <li><p><%= msg %>!</p></li>
+        <li><%= msg %>!</li>
       <% end %>
     </ul>
   <% end %>

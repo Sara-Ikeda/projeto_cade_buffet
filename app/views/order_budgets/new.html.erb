@@ -3,14 +3,14 @@
 
   <div>
     <% if @order_budget.errors.any? %>
-      <p>Verifique os campos:</p>
-      <% @order_budget.errors.full_messages.each do |msg| %>
-        <p><%= msg %>!</p>
-      <% end %>
+      <strong>Verifique os campos:</strong>
+      <ul>
+        <% @order_budget.errors.full_messages.each do |msg| %>
+          <li><%= msg %>!</li>
+        <% end %>
+      </ul>
     <% end %>
   </div>
-
-  <p><strong>Valor-Padrão: </strong><%= @order_budget.standard_value %>,00</p>
 
   <%= form_with model: [@order, @order_budget] do |f| %>
     <div>

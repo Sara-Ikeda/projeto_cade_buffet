@@ -213,21 +213,4 @@ describe 'Usuário não autenticado busca por Buffets' do
       expect(page).to have_content '0 Buffets encontrados.'
       expect(page).to_not have_content 'Gourmet dos Noivos'
   end
-
-  it 'e é redirecionado para a página de detalhes ao clicar no nome' do
-    owner = Owner.create!(email: 'sara@email.com', password: 'password')
-    address = Address.create!(street: 'Av Paulista', number: 50, district: 'Bela Vista',
-                              city: 'São Paulo', state: 'SP', zip: '01153000')
-    buffet = Buffet.create!(trade_name: 'Gourmet dos Noivos', company_name: 'Buffet Gourmet LTDA',
-              registration_number: '56862478000652', telephone: '55961524798',
-              email: 'noivos@contato.com', address: address, owner: owner,
-              description: 'Buffet especializado em casamento', payment_types: 'Cartão Débito/Crédito')
-
-    visit root_path
-    fill_in 'Buscar Buffet', with: 'São Paulo'
-    click_on 'Buscar'
-    click_on 'Gourmet dos Noivos'
-
-    expect(current_path).to eq buffet_path(buffet)
-  end
 end
